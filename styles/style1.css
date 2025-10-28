@@ -1,0 +1,62 @@
+root{
+  --circuit-stroke:#e6eef5;   /* لون خطوط الدوائر */
+  --circuit-dots:#cfdbea;     /* لون النقاط */
+  --bg-base:#ffffff;          /* الخلفية الأساسية */
+}
+
+/* خلفية هندسية فاتحة تغطي الشاشة كلها */
+.tech-circuit {
+  min-height: 100svh;
+  background-color: var(--bg-base);
+  /* SVG كباترن متكرر + تدرجات خفيفة من الأطراف لرفع قابلية القراءة */
+  background-image:
+    radial-gradient(1000px 600px at 10% 0%, #f6f9fc, transparent 70%),
+    radial-gradient(800px 500px at 90% 100%, #f6f9fc, transparent 70%),
+    url("data:image/svg+xml;utf8,\
+<svg style='opacity:30%;' xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 20 20'>\
+<rect width='20' height='20' fill='transparent'/>\
+<g stroke='%23e6eef5' stroke-width='0.5' fill='none' stroke-linecap='round'>\
+<path d='M0 10 H20 M10 0 V20' opacity='0.25'/>\
+<path d='M2 6 H10 V2 H18'/>\
+<path d='M2 14 H8 V18 H18'/>\
+<path d='M6 2 V8 H4'/>\
+<path d='M14 12 V6 H12'/>\
+<path d='M12 18 V14 H18'/>\
+</g>\
+<g fill='%23cfdbea'>\
+<circle cx='2' cy='6' r='0.8'/>\
+<circle cx='10' cy='2' r='0.8'/>\
+<circle cx='18' cy='6' r='0.8'/>\
+<circle cx='2' cy='14' r='0.8'/>\
+<circle cx='8' cy='18' r='0.8'/>\
+<circle cx='14' cy='12' r='0.8'/>\
+<circle cx='12' cy='18' r='0.8'/>\
+<circle cx='18' cy='14' r='0.8'/>\
+</g>\
+</svg>");
+  background-repeat: repeat;
+  background-size: auto, auto, 400px 400px;  /* حجم الباترن */
+  background-attachment: fixed, fixed, fixed; /* ثبات لطيف عند السحب */
+  animation: circuitMove 40s linear infinite; /* حركة خفيفة */
+}
+
+/* طبقة سطح لرفع وضوح النص فوق الخلفية (اختياري) */
+.surface {
+  background: #ffffffaa;
+  backdrop-filter: blur(2px);
+  border: 1px solid #e5edf6;
+  border-radius: 20px;
+  padding: clamp(16px,2.5vw,28px);
+  box-shadow: 0 10px 30px rgba(16,24,40,.05);
+}
+
+/* حركة بطيئة جدًا */
+@keyframes circuitMove {
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 0, 400px 400px; }
+}
+
+/* احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce){
+  .tech-circuit { animation: none; }
+}
