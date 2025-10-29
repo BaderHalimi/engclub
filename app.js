@@ -9,11 +9,126 @@ async function loadData() {
         const response = await fetch('data.json');
         siteData = await response.json();
         console.log('✅ تم تحميل البيانات بنجاح');
+        
+        // ملء البيانات في الصفحة
+        populatePageData();
+        
         return true;
     } catch (error) {
         console.error('❌ خطأ في تحميل البيانات:', error);
         return false;
     }
+}
+
+// دالة ملء البيانات في الصفحة
+function populatePageData() {
+    if (!siteData) return;
+    
+    // تحديث عنوان الصفحة
+    document.title = siteData.siteInfo.title;
+    
+    // تحديث الإحصائيات
+    updateStatistics();
+}
+
+// تحديث الإحصائيات
+function updateStatistics() {
+    const stats = siteData.siteInfo.statistics;
+    
+    // البحث عن عناصر الإحصائيات وتحديثها
+    const statElements = document.querySelectorAll('[data-stat]');
+    statElements.forEach(element => {
+        const statType = element.getAttribute('data-stat');
+        if (stats[statType]) {
+            element.textContent = stats[statType];
+        }
+    });
+}
+
+// دالة استكشاف التخصص (محدثة لاستخدام JSON)
+function exploreSpecialty(specialtyId) {
+    if (!siteData || !siteData.specialties || !siteData.specialties[specialtyId]) {
+        console.error('لا يمكن تحميل بيانات التخصص');
+        return;
+    }
+    
+    const specialty = siteData.specialties[specialtyId];
+    const modal = document.getElementById('specialtyModal');
+    const content = document.getElementById('specialtyModalContent');
+    
+    document.body.classList.add('modal-open');
+    
+    // بناء HTML للمساقات
+    const coursesHTML = specialty.courses.map(courseId => {
+        const course = siteData.courses[courseId];
+        if (!course) return '';
+        
+        return `
+            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-all cursor-pointer" 
+                 onclick="closeSpecialtyModal(); showCourseDetails('${courseId}')">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-${specialty.color}-600 font-bold">${course.code}</span>
+                    <span class="text-gray-600 text-sm">${course.hours}</span>
+                </div>
+                <h4 class="font-semibold text-gray-800">${course.name}</h4>
+            </div>
+        `;
+    }).join('');
+    
+    content.innerHTML = `
+        <div class="text-center mb-6">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${specialty.gradient} flex items-center justify-center mb-4">
+                <i class="${specialty.icon} text-3xl text-white"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-${specialty.color}-600 mb-2">${specialty.name}</h2>
+            <p class="text-gray-600">${specialty.subtitle}</p>
+        </div>
+        
+        <div class="bg-${specialty.color}-50 p-6 rounded-xl mb-6">
+            <h3 class="text-xl font-bold text-${specialty.color}-800 mb-3">نظرة عامة</h3>
+            <p class="text-gray-700">${specialty.overview}</p>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">مجالات العمل</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                ${specialty.careers.map(career => `
+                    <div class="bg-gradient-to-r ${specialty.gradient} p-4 rounded-lg text-white">
+                        <i class="fas fa-briefcase ml-2"></i>
+                        ${career}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div class="mb-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">المهارات المكتسبة</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                ${specialty.skills.map(skill => `
+                    <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-check-circle text-${specialty.color}-600 ml-2 mt-1"></i>
+                        <span class="text-gray-700">${skill}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">المساقات الدراسية</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                ${coursesHTML}
+            </div>
+        </div>
+    `;
+    
+    modal.classList.remove('hidden');
+}
+
+// إغلاق نافذة التخصص
+function closeSpecialtyModal() {
+    const modal = document.getElementById('specialtyModal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
 }
 
 // دالة عرض تفاصيل المساق (محدثة لاستخدام JSON)
@@ -82,6 +197,13 @@ function showCourseDetails(courseId) {
     `;
     
     modal.classList.remove('hidden');
+}
+
+// إغلاق نافذة المساق
+function closeCourseModal() {
+    const modal = document.getElementById('courseModal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
 }
 
 // دالة عرض تفاصيل عضو هيئة التدريس (محدثة لاستخدام JSON)
@@ -180,6 +302,13 @@ function showFacultyDetails(facultyId) {
     `;
     
     modal.classList.remove('hidden');
+}
+
+// إغلاق نافذة عضو هيئة التدريس
+function closeFacultyModal() {
+    const modal = document.getElementById('facultyModal');
+    modal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
 }
 
 // تحميل البيانات عند بدء التشغيل
