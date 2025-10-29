@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/logo.png" type="image/x-icon">
-    <title>رحلة اكتشاف التخصصات - النادي الهندسي</title>
+    <title>رحلة اكتشاف التخصصات - عمادة الهندسة والنظم الذكية</title>
     <!-- Load Noto Sans Arabic Font -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Load Font Awesome Icons -->
@@ -733,43 +733,6 @@
             </div>
         </section>
 
-        <!-- إحصائيات القسم -->
-        <section class="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 mb-16 reveal-animation">
-            <h2 class="text-3xl font-bold text-white text-center mb-8 flex items-center justify-center">
-                <i class="fas fa-chart-bar text-4xl ml-4"></i> إحصائيات القسم
-            </h2>
-            <div class="grid md:grid-cols-4 gap-6 text-center">
-                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6">
-                    <div class="text-5xl mb-3 text-white font-bold">
-                        <span data-stat="students">500+</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">طالب وطالبة</h3>
-                    <p class="text-white opacity-80 text-sm">ملتحقين بالبرامج</p>
-                </div>
-                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6">
-                    <div class="text-5xl mb-3 text-white font-bold">
-                        <span data-stat="courses">29</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">مساق دراسي</h3>
-                    <p class="text-white opacity-80 text-sm">في التخصصين</p>
-                </div>
-                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6">
-                    <div class="text-5xl mb-3 text-white font-bold">
-                        <span data-stat="faculty">15+</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">عضو هيئة تدريس</h3>
-                    <p class="text-white opacity-80 text-sm">متخصصين ومؤهلين</p>
-                </div>
-                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6">
-                    <div class="text-5xl mb-3 text-white font-bold">
-                        <span data-stat="labs">8</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">مختبر حديث</h3>
-                    <p class="text-white opacity-80 text-sm">بأحدث التجهيزات</p>
-                </div>
-            </div>
-        </section>
-
         <!-- إحصائيات ومعلومات إضافية -->
         <section class="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 mb-16 reveal-animation">
             <h2 class="text-3xl font-bold text-white text-center mb-8 flex items-center justify-center">
@@ -853,17 +816,17 @@
                 <div class="modal-header">
                     <div class="flex justify-between items-center">
                         <h2 class="text-xl font-bold text-gray-800">تفاصيل التخصص</h2>
-                        <button onclick="closeSpecialtyModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div id="specialtyModalContent"></div>
+                    <div id="modalContent"></div>
                 </div>
                 <div class="modal-footer">
                     <div class="text-center">
-                        <button onclick="closeSpecialtyModal()" class="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600 transition-colors">
+                        <button onclick="closeModal()" class="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600 transition-colors">
                             إغلاق
                         </button>
                     </div>
@@ -897,8 +860,1306 @@
             </div>
         </div>
     </div>
-    <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+    <script>
+        // تأثيرات الرحلة التفاعلية
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            // تحديث شريط التقدم
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight - winHeight;
+            const scrollPercent = (scrolled / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+            
+            // إظهار العناصر عند التمرير
+            const elements = document.querySelectorAll('.reveal-animation');
+            elements.forEach(element => {
+                const elementTop = element.offsetTop;
+                const elementVisible = 150;
+                
+                if (scrolled > elementTop - winHeight + elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+
+        // وظائف استكشاف التخصصات
+        function exploreSpecialty(type) {
+            const modal = document.getElementById('specialtyModal');
+            const content = document.getElementById('modalContent');
+            
+            if (type === 'cybersecurity') {
+                content.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4 text-cyber-purple">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-cyber-purple mb-4">هندسة أمن المعلومات السيبراني</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-purple-50 p-6 rounded-xl curriculum-section relative" id="cybersecurityCurriculum">
+                            <button class="expand-btn" onclick="toggleCurriculumExpansion('cybersecurityCurriculum', 'cybersecurity')" title="توسيع/تصغير">
+                                <i class="fas fa-expand" id="cybersecurityExpandIcon"></i>
+                            </button>
+                            <h3 class="text-xl font-bold text-cyber-purple mb-4 flex items-center">
+                                <i class="fas fa-book ml-2"></i> المناهج الدراسية
+                                <span class="text-sm font-normal text-gray-500 mr-2">(15 مساق)</span>
+                            </h3>
+                            <div class="space-y-2 text-gray-700 max-h-80 overflow-y-auto">
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS101')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS101 - مقدمة في علوم الحاسوب</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS201')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS201 - أساسيات أمن المعلومات</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS301')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS301 - أمن الشبكات والإنترنت</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS302')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS302 - التشفير وأمان البيانات</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS303')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS303 - أمن أنظمة التشغيل</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS401')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS401 - اختبار الاختراق الأخلاقي</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS402')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS402 - الطب الشرعي الرقمي</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS403')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS403 - إدارة أمن المعلومات</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS404')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS404 - الأمن السيبراني المتقدم</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS405')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS405 - أمن تطبيقات الويب</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS406')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS406 - هندسة الأنظمة الآمنة</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS407')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS407 - الذكاء الاصطناعي في الأمن السيبراني</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS408')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS408 - أمن الحوسبة السحابية</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS409')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS409 - أمن إنترنت الأشياء (IoT)</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition-colors" onclick="showCourseDetails('CS410')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">CS410 - مشروع التخرج (أمن المعلومات)</span>
+                                        <i class="fas fa-chevron-left text-cyber-purple"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <p class="text-sm text-gray-500">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    اضغط على أي مساق لعرض التفاصيل
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-cyber-purple mb-4 flex items-center">
+                                <i class="fas fa-bullseye ml-2"></i> المهارات المكتسبة
+                            </h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><i class="fas fa-arrow-left text-cyber-purple ml-2"></i> تأمين الشبكات والأنظمة</li>
+                                <li><i class="fas fa-arrow-left text-cyber-purple ml-2"></i> تحليل التهديدات السيبرانية</li>
+                                <li><i class="fas fa-arrow-left text-cyber-purple ml-2"></i> تطوير سياسات الأمان</li>
+                                <li><i class="fas fa-arrow-left text-cyber-purple ml-2"></i> إجراء تقييمات الأمان</li>
+                                <li><i class="fas fa-arrow-left text-cyber-purple ml-2"></i> الاستجابة للحوادث الأمنية</li>
+                                <li><i class="fas fa-arrow-left text-cyber-purple ml-2"></i> تدقيق أنظمة الأمان</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-gradient-to-r from-purple-100 to-purple-200 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-cyber-purple mb-4 flex items-center">
+                            <i class="fas fa-briefcase ml-2"></i> مستقبلك المهني
+                        </h3>
+                        <p class="text-gray-700 mb-4">في عالم يزداد اعتماداً على التكنولوجيا، يصبح أمن المعلومات أولوية قصوى. كخريج من هذا التخصص، ستكون جزءاً من الخط الأول للدفاع ضد التهديدات السيبرانية.</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-bold text-cyber-purple mb-2">القطاعات:</h4>
+                                <ul class="text-sm text-gray-600">
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> البنوك والمؤسسات المالية</li>
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> الشركات التقنية</li>
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> الوزارات والمؤسسات الحكومية</li>
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> شركات الاستشارات الأمنية</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-cyber-purple mb-2">المسميات الوظيفية:</h4>
+                                <ul class="text-sm text-gray-600">
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> مهندس أمن معلومات</li>
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> محلل أمن سيبراني</li>
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> خبير اختبار اختراق</li>
+                                    <li><i class="fas fa-dot-circle text-cyber-purple ml-2"></i> مدير أمن معلومات</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'ai') {
+                content.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4 text-ai-orange">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-ai-orange mb-4">علم البيانات والذكاء الاصطناعي</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-orange-50 p-6 rounded-xl curriculum-section relative" id="aiCurriculum">
+                            <button class="expand-btn" onclick="toggleCurriculumExpansion('aiCurriculum', 'ai')" title="توسيع/تصغير" style="background: rgba(249, 115, 22, 0.9);">
+                                <i class="fas fa-expand" id="aiExpandIcon"></i>
+                            </button>
+                            <h3 class="text-xl font-bold text-ai-orange mb-4 flex items-center">
+                                <i class="fas fa-book ml-2"></i> المناهج الدراسية
+                                <span class="text-sm font-normal text-gray-500 mr-2">(14 مساق)</span>
+                            </h3>
+                            <div class="space-y-2 text-gray-700 max-h-80 overflow-y-auto">
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI101')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI101 - مقدمة في الذكاء الاصطناعي</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI201')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI201 - أساسيات علم البيانات</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI202')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI202 - التحليل الإحصائي للبيانات</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI301')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI301 - تعلم الآلة والذكاء الاصطناعي</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI302')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI302 - الرؤية الحاسوبية</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI303')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI303 - معالجة اللغات الطبيعية</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI401')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI401 - الشبكات العصبية العميقة</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI402')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI402 - تحليل البيانات الضخمة</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI403')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI403 - الذكاء الاصطناعي التطبيقي</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI404')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI404 - التعلم المعزز</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI405')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI405 - الحوسبة السحابية للذكاء الاصطناعي</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI406')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI406 - أخلاقيات الذكاء الاصطناعي</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI407')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI407 - الروبوتات والأنظمة الذكية</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="course-item bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:bg-orange-100 transition-colors" onclick="showCourseDetails('AI410')">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium">AI410 - مشروع التخرج (الذكاء الاصطناعي)</span>
+                                        <i class="fas fa-chevron-left text-ai-orange"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <p class="text-sm text-gray-500">
+                                    <i class="fas fa-info-circle ml-1"></i>
+                                    اضغط على أي مساق لعرض التفاصيل
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-ai-orange mb-4 flex items-center">
+                                <i class="fas fa-bullseye ml-2"></i> المهارات المكتسبة
+                            </h3>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><i class="fas fa-arrow-left text-ai-orange ml-2"></i> تطوير نماذج الذكاء الاصطناعي</li>
+                                <li><i class="fas fa-arrow-left text-ai-orange ml-2"></i> تحليل البيانات الضخمة</li>
+                                <li><i class="fas fa-arrow-left text-ai-orange ml-2"></i> برمجة خوارزميات التعلم</li>
+                                <li><i class="fas fa-arrow-left text-ai-orange ml-2"></i> تصميم أنظمة ذكية</li>
+                                <li><i class="fas fa-arrow-left text-ai-orange ml-2"></i> تطوير تطبيقات ذكية</li>
+                                <li><i class="fas fa-arrow-left text-ai-orange ml-2"></i> استخراج المعرفة من البيانات</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-gradient-to-r from-orange-100 to-orange-200 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-ai-orange mb-4 flex items-center">
+                            <i class="fas fa-briefcase ml-2"></i> مستقبلك المهني
+                        </h3>
+                        <p class="text-gray-700 mb-4">الذكاء الاصطناعي هو مستقبل التكنولوجيا. كخريج من هذا التخصص، ستكون في مقدمة الثورة التقنية وتساهم في تطوير الحلول الذكية التي تغير العالم.</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-bold text-ai-orange mb-2">القطاعات:</h4>
+                                <ul class="text-sm text-gray-600">
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> شركات التكنولوجيا</li>
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> المؤسسات البحثية</li>
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> القطاع الطبي والصحي</li>
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> الشركات المالية والمصرفية</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-ai-orange mb-2">المسميات الوظيفية:</h4>
+                                <ul class="text-sm text-gray-600">
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> عالم بيانات</li>
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> مهندس ذكاء اصطناعي</li>
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> محلل بيانات</li>
+                                    <li><i class="fas fa-dot-circle text-ai-orange ml-2"></i> باحث في الذكاء الاصطناعي</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+            // منع التمرير في الخلفية
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            document.getElementById('specialtyModal').classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        // وظائف مودال المساقات
+        function showCourseDetails(courseId) {
+            const modal = document.getElementById('courseModal');
+            const content = document.getElementById('courseModalContent');
+            
+            // منع التمرير في الخلفية
+            document.body.classList.add('modal-open');
+            
+            const courseData = {
+                'CS101': {
+                    name: 'مقدمة في علوم الحاسوب',
+                    code: 'CS101',
+                    hours: '3 ساعات معتمدة',
+                    description: 'مقدمة شاملة لعلوم الحاسوب وأساسيات البرمجة والخوارزميات.',
+                    objectives: [
+                        'فهم أساسيات البرمجة والخوارزميات',
+                        'التعرف على مكونات الحاسوب الأساسية',
+                        'تعلم مبادئ حل المشكلات باستخدام الحاسوب',
+                        'فهم أنواع البيانات والهياكل الأساسية'
+                    ],
+                    topics: [
+                        'مقدمة في البرمجة باستخدام Python',
+                        'الخوارزميات وتحليل التعقيد',
+                        'هياكل البيانات الأساسية',
+                        'مقدمة في قواعد البيانات'
+                    ]
+                },
+                'CS201': {
+                    name: 'أساسيات أمن المعلومات',
+                    code: 'CS201',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة المفاهيم الأساسية لأمن المعلومات والتهديدات السيبرانية.',
+                    objectives: [
+                        'فهم مبادئ الأمان الثلاثة: السرية، التكامل، الإتاحة',
+                        'التعرف على أنواع التهديدات والمخاطر السيبرانية',
+                        'فهم أساسيات إدارة المخاطر',
+                        'تعلم مبادئ السياسات الأمنية'
+                    ],
+                    topics: [
+                        'مقدمة في أمن المعلومات',
+                        'أنواع التهديدات والهجمات',
+                        'إدارة المخاطر الأمنية',
+                        'السياسات والإجراءات الأمنية',
+                        'الوعي الأمني'
+                    ]
+                },
+                'CS301': {
+                    name: 'أمن الشبكات والإنترنت',
+                    code: 'CS301',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة أمان الشبكات وبروتوكولات الحماية والجدران النارية.',
+                    objectives: [
+                        'فهم بروتوكولات أمان الشبكات',
+                        'تعلم تكوين وإدارة الجدران النارية',
+                        'فهم أنظمة كشف ومنع التسلل',
+                        'تطبيق أساليب مراقبة الشبكة'
+                    ],
+                    topics: [
+                        'بروتوكولات الشبكة الآمنة (SSL/TLS)',
+                        'الجدران النارية وأنواعها',
+                        'أنظمة كشف التسلل (IDS/IPS)',
+                        'الشبكات الخاصة الافتراضية (VPN)',
+                        'مراقبة وتحليل حركة الشبكة'
+                    ]
+                },
+                'CS302': {
+                    name: 'التشفير وأمان البيانات',
+                    code: 'CS302',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة خوارزميات التشفير وأساليب حماية البيانات.',
+                    objectives: [
+                        'فهم مبادئ التشفير المتماثل وغير المتماثل',
+                        'تعلم خوارزميات التشفير الحديثة',
+                        'فهم البنية التحتية للمفاتيح العامة',
+                        'تطبيق أساليب حماية البيانات'
+                    ],
+                    topics: [
+                        'التشفير المتماثل وغير المتماثل',
+                        'خوارزميات التشفير (AES, RSA)',
+                        'التوقيع الرقمي والمصادقة',
+                        'إدارة المفاتيح الرقمية',
+                        'تشفير قواعد البيانات'
+                    ]
+                },
+                'CS303': {
+                    name: 'أمن أنظمة التشغيل',
+                    code: 'CS303',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة أمان أنظمة التشغيل المختلفة وآليات الحماية.',
+                    objectives: [
+                        'فهم آليات الأمان في أنظمة التشغيل',
+                        'تعلم تكوين أنظمة التشغيل الآمنة',
+                        'فهم إدارة الصلاحيات والوصول',
+                        'تطبيق أساليب تدقيق النظام'
+                    ],
+                    topics: [
+                        'أمان Windows وLinux',
+                        'إدارة المستخدمين والصلاحيات',
+                        'تدقيق النظام ومراقبة الأحداث',
+                        'تأمين الخدمات والتطبيقات',
+                        'الاستجابة للحوادث الأمنية'
+                    ]
+                },
+                'CS401': {
+                    name: 'اختبار الاختراق الأخلاقي',
+                    code: 'CS401',
+                    hours: '3 ساعات معتمدة',
+                    description: 'تعلم تقنيات اختبار الاختراق الأخلاقي وتقييم الأمان.',
+                    objectives: [
+                        'فهم منهجيات اختبار الاختراق',
+                        'تعلم أدوات الاختبار المتقدمة',
+                        'تطبيق تقنيات الاختراق الأخلاقي',
+                        'كتابة تقارير الأمان المهنية'
+                    ],
+                    topics: [
+                        'منهجيات اختبار الاختراق',
+                        'أدوات Kali Linux وMetasploit',
+                        'اختبار أمان تطبيقات الويب',
+                        'اختبار اختراق الشبكات',
+                        'التقارير الأمنية والتوصيات'
+                    ]
+                },
+                'CS402': {
+                    name: 'الطب الشرعي الرقمي',
+                    code: 'CS402',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة تقنيات التحقيق الرقمي واستخراج الأدلة الإلكترونية.',
+                    objectives: [
+                        'فهم مبادئ الطب الشرعي الرقمي',
+                        'تعلم أدوات التحقيق الرقمي',
+                        'تطبيق تقنيات استخراج الأدلة',
+                        'فهم الجوانب القانونية للأدلة الرقمية'
+                    ],
+                    topics: [
+                        'مبادئ التحقيق الرقمي',
+                        'استخراج البيانات من الأجهزة',
+                        'تحليل سجلات النظام',
+                        'استرداد الملفات المحذوفة',
+                        'القانون والأدلة الرقمية'
+                    ]
+                },
+                'CS403': {
+                    name: 'إدارة أمن المعلومات',
+                    code: 'CS403',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة إدارة برامج أمن المعلومات والحوكمة الأمنية.',
+                    objectives: [
+                        'فهم إطار عمل الحوكمة الأمنية',
+                        'تعلم إدارة برامج الأمان',
+                        'فهم معايير الأمان الدولية',
+                        'تطبيق أساليب قياس الأداء الأمني'
+                    ],
+                    topics: [
+                        'حوكمة أمن المعلومات',
+                        'معايير ISO 27001/27002',
+                        'إدارة المخاطر المؤسسية',
+                        'استمرارية الأعمال',
+                        'التدقيق الأمني'
+                    ]
+                },
+                'CS404': {
+                    name: 'الأمن السيبراني المتقدم',
+                    code: 'CS404',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة التهديدات السيبرانية المتطورة وتقنيات الحماية الحديثة.',
+                    objectives: [
+                        'فهم التهديدات المتقدمة والمستمرة',
+                        'تعلم تقنيات التحليل السلوكي',
+                        'تطبيق الذكاء الاصطناعي في الأمان',
+                        'فهم أمان البيئات السحابية'
+                    ],
+                    topics: [
+                        'التهديدات المتقدمة والمستمرة (APT)',
+                        'التحليل السلوكي والشاذ',
+                        'الذكاء الاصطناعي في الأمان',
+                        'أمان الحوسبة السحابية',
+                        'التهديدات الناشئة'
+                    ]
+                },
+                'CS405': {
+                    name: 'أمن تطبيقات الويب',
+                    code: 'CS405',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة أمان تطبيقات الويب والثغرات الشائعة.',
+                    objectives: [
+                        'فهم ثغرات تطبيقات الويب الشائعة',
+                        'تعلم تقنيات البرمجة الآمنة',
+                        'تطبيق أدوات اختبار أمان الويب',
+                        'فهم أمان APIs والخدمات'
+                    ],
+                    topics: [
+                        'ثغرات OWASP Top 10',
+                        'حقن SQL وXSS',
+                        'المصادقة والتفويض',
+                        'أمان APIs والخدمات',
+                        'البرمجة الآمنة'
+                    ]
+                },
+                'CS406': {
+                    name: 'هندسة الأنظمة الآمنة',
+                    code: 'CS406',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة تصميم وبناء الأنظمة الآمنة من البداية.',
+                    objectives: [
+                        'فهم مبادئ التصميم الآمن',
+                        'تعلم نمذجة التهديدات',
+                        'تطبيق مراجعة الكود الأمنية',
+                        'فهم دورة حياة التطوير الآمن'
+                    ],
+                    topics: [
+                        'مبادئ التصميم الآمن',
+                        'نمذجة التهديدات',
+                        'مراجعة الكود الأمنية',
+                        'اختبار الأمان التلقائي',
+                        'دورة حياة التطوير الآمن (SDLC)'
+                    ]
+                },
+                'CS407': {
+                    name: 'الذكاء الاصطناعي في الأمن السيبراني',
+                    code: 'CS407',
+                    hours: '3 ساعات معتمدة',
+                    description: 'تطبيق تقنيات الذكاء الاصطناعي في مجال الأمن السيبراني.',
+                    objectives: [
+                        'فهم تطبيقات الذكاء الاصطناعي في الأمان',
+                        'تعلم تقنيات التعلم الآلي للأمان',
+                        'تطبيق كشف الشذوذ باستخدام AI',
+                        'فهم أمان أنظمة الذكاء الاصطناعي'
+                    ],
+                    topics: [
+                        'تعلم الآلة للأمان السيبراني',
+                        'كشف الشذوذ والتهديدات',
+                        'معالجة اللغة الطبيعية للأمان',
+                        'الشبكات العصبية للكشف عن التسلل',
+                        'أمان أنظمة الذكاء الاصطناعي'
+                    ]
+                },
+                'CS408': {
+                    name: 'أمن الحوسبة السحابية',
+                    code: 'CS408',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة أمان البيئات السحابية ونماذج الخدمة المختلفة.',
+                    objectives: [
+                        'فهم نماذج الأمان السحابي',
+                        'تعلم تأمين خدمات السحابة',
+                        'تطبيق مراقبة البيئات السحابية',
+                        'فهم الامتثال والحوكمة السحابية'
+                    ],
+                    topics: [
+                        'نماذج الخدمة السحابية (IaaS, PaaS, SaaS)',
+                        'أمان البنية التحتية السحابية',
+                        'إدارة الهوية والوصول في السحابة',
+                        'تشفير البيانات السحابية',
+                        'مراقبة وتدقيق البيئات السحابية'
+                    ]
+                },
+                'CS409': {
+                    name: 'أمن إنترنت الأشياء (IoT)',
+                    code: 'CS409',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة التحديات الأمنية لأجهزة إنترنت الأشياء.',
+                    objectives: [
+                        'فهم تحديات أمان IoT',
+                        'تعلم تأمين أجهزة IoT',
+                        'تطبيق بروتوكولات الاتصال الآمنة',
+                        'فهم إدارة أجهزة IoT بشكل آمن'
+                    ],
+                    topics: [
+                        'مقدمة في أمان إنترنت الأشياء',
+                        'بروتوكولات الاتصال الآمنة للـ IoT',
+                        'أمان أجهزة الاستشعار',
+                        'إدارة الهوية لأجهزة IoT',
+                        'مراقبة شبكات IoT'
+                    ]
+                },
+                'CS410': {
+                    name: 'مشروع التخرج (أمن المعلومات)',
+                    code: 'CS410',
+                    hours: '6 ساعات معتمدة',
+                    description: 'مشروع عملي شامل في مجال أمن المعلومات تحت إشراف أكاديمي.',
+                    objectives: [
+                        'تطبيق المعرفة النظرية في مشروع عملي',
+                        'تطوير حلول مبتكرة لمشكلات الأمان',
+                        'إجراء بحث علمي في مجال التخصص',
+                        'تقديم المشروع بطريقة احترافية'
+                    ],
+                    topics: [
+                        'اختيار موضوع المشروع',
+                        'مراجعة الأدبيات',
+                        'تصميم وتطوير الحل',
+                        'اختبار وتقييم النتائج',
+                        'كتابة التقرير النهائي والعرض'
+                    ]
+                },
+                'AI101': {
+                    name: 'مقدمة في الذكاء الاصطناعي',
+                    code: 'AI101',
+                    hours: '3 ساعات معتمدة',
+                    description: 'مقدمة شاملة لمفاهيم الذكاء الاصطناعي وتطبيقاته المختلفة.',
+                    objectives: [
+                        'فهم تاريخ وتطور الذكاء الاصطناعي',
+                        'التعرف على أنواع الذكاء الاصطناعي المختلفة',
+                        'فهم التطبيقات العملية للذكاء الاصطناعي',
+                        'تعلم أساسيات البرمجة للذكاء الاصطناعي'
+                    ],
+                    topics: [
+                        'تاريخ الذكاء الاصطناعي',
+                        'أنواع الذكاء الاصطناعي',
+                        'الخوارزميات الأساسية',
+                        'البرمجة بـ Python للذكاء الاصطناعي',
+                        'مقدمة في مكتبات الذكاء الاصطناعي'
+                    ]
+                },
+                'AI201': {
+                    name: 'أساسيات علم البيانات',
+                    code: 'AI201',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة المفاهيم الأساسية لعلم البيانات وتحليل البيانات.',
+                    objectives: [
+                        'فهم دورة حياة علم البيانات',
+                        'تعلم تنظيف ومعالجة البيانات',
+                        'فهم أساسيات التحليل الاستكشافي',
+                        'تطبيق أدوات التصور البياني'
+                    ],
+                    topics: [
+                        'مقدمة في علم البيانات',
+                        'تنظيف ومعالجة البيانات',
+                        'التحليل الاستكشافي للبيانات',
+                        'التصور البياني باستخدام Python',
+                        'مقدمة في قواعد البيانات للبيانات الضخمة'
+                    ]
+                },
+                'AI202': {
+                    name: 'التحليل الإحصائي للبيانات',
+                    code: 'AI202',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة الأساليب الإحصائية المتقدمة لتحليل البيانات.',
+                    objectives: [
+                        'فهم الإحصاء الوصفي والاستنتاجي',
+                        'تعلم اختبار الفرضيات',
+                        'تطبيق تحليل الانحدار',
+                        'فهم التحليل متعدد المتغيرات'
+                    ],
+                    topics: [
+                        'الإحصاء الوصفي والاستنتاجي',
+                        'اختبار الفرضيات',
+                        'تحليل الانحدار الخطي ومتعدد الحدود',
+                        'التحليل العاملي',
+                        'الإحصاء التطبيقي باستخدام R و Python'
+                    ]
+                },
+                'AI301': {
+                    name: 'تعلم الآلة والذكاء الاصطناعي',
+                    code: 'AI301',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة خوارزميات تعلم الآلة والتطبيقات العملية.',
+                    objectives: [
+                        'فهم أنواع تعلم الآلة المختلفة',
+                        'تطبيق خوارزميات التصنيف والتجميع',
+                        'فهم تقييم نماذج تعلم الآلة',
+                        'تطبيق التعلم الخاضع وغير الخاضع للإشراف'
+                    ],
+                    topics: [
+                        'التعلم الخاضع للإشراف',
+                        'التعلم غير الخاضع للإشراف',
+                        'خوارزميات التصنيف والتجميع',
+                        'تقييم الأداء وضبط المعاملات',
+                        'مكتبات Scikit-learn و TensorFlow'
+                    ]
+                },
+                'AI302': {
+                    name: 'الرؤية الحاسوبية',
+                    code: 'AI302',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة تقنيات معالجة الصور والرؤية الحاسوبية.',
+                    objectives: [
+                        'فهم أساسيات معالجة الصور',
+                        'تعلم خوارزميات الكشف والتعرف',
+                        'تطبيق الشبكات العصبية التطبيقية',
+                        'فهم تطبيقات الرؤية الحاسوبية'
+                    ],
+                    topics: [
+                        'معالجة الصور الرقمية',
+                        'كشف الحواف والمعالم',
+                        'التعرف على الأنماط',
+                        'الشبكات العصبية التطبيقية (CNN)',
+                        'تطبيقات الرؤية الحاسوبية'
+                    ]
+                },
+                'AI303': {
+                    name: 'معالجة اللغات الطبيعية',
+                    code: 'AI303',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة تقنيات معالجة وفهم اللغات الطبيعية.',
+                    objectives: [
+                        'فهم أساسيات معالجة اللغة الطبيعية',
+                        'تعلم تقنيات تحليل النصوص',
+                        'تطبيق نماذج اللغة',
+                        'فهم تطبيقات NLP المتقدمة'
+                    ],
+                    topics: [
+                        'تحليل النصوص ومعالجتها',
+                        'نماذج اللغة الإحصائية',
+                        'التعرف على الكيانات المسماة',
+                        'تحليل المشاعر',
+                        'الترجمة الآلية وتطبيقات NLP'
+                    ]
+                },
+                'AI401': {
+                    name: 'الشبكات العصبية العميقة',
+                    code: 'AI401',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة الشبكات العصبية العميقة والتعلم العميق.',
+                    objectives: [
+                        'فهم بنية الشبكات العصبية العميقة',
+                        'تعلم خوارزميات التدريب المتقدمة',
+                        'تطبيق أنواع مختلفة من الشبكات',
+                        'فهم تطبيقات التعلم العميق'
+                    ],
+                    topics: [
+                        'الشبكات العصبية متعددة الطبقات',
+                        'خوارزميات الانتشار العكسي',
+                        'الشبكات التطبيقية والمتكررة',
+                        'تقنيات التحسين المتقدمة',
+                        'إطارات العمل للتعلم العميق'
+                    ]
+                },
+                'AI402': {
+                    name: 'تحليل البيانات الضخمة',
+                    code: 'AI402',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة تقنيات تحليل ومعالجة البيانات الضخمة.',
+                    objectives: [
+                        'فهم تحديات البيانات الضخمة',
+                        'تعلم تقنيات المعالجة الموزعة',
+                        'تطبيق أدوات البيانات الضخمة',
+                        'فهم تحليل البيانات المتدفقة'
+                    ],
+                    topics: [
+                        'مقدمة في البيانات الضخمة',
+                        'أنظمة الملفات الموزعة',
+                        'MapReduce و Apache Spark',
+                        'قواعد البيانات NoSQL',
+                        'تحليل البيانات المتدفقة'
+                    ]
+                },
+                'AI403': {
+                    name: 'الذكاء الاصطناعي التطبيقي',
+                    code: 'AI403',
+                    hours: '3 ساعات معتمدة',
+                    description: 'تطبيق تقنيات الذكاء الاصطناعي في مجالات مختلفة.',
+                    objectives: [
+                        'تطبيق الذكاء الاصطناعي في الطب',
+                        'فهم تطبيقات المالية والتجارة',
+                        'تعلم الذكاء الاصطناعي في الصناعة',
+                        'تطوير حلول ذكية متكاملة'
+                    ],
+                    topics: [
+                        'الذكاء الاصطناعي في الطب',
+                        'التطبيقات المالية والمصرفية',
+                        'الصناعة الذكية والأتمتة',
+                        'التسويق الذكي والتوصيات',
+                        'مشاريع تطبيقية متنوعة'
+                    ]
+                },
+                'AI404': {
+                    name: 'التعلم المعزز',
+                    code: 'AI404',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة خوارزميات التعلم المعزز والتطبيقات التفاعلية.',
+                    objectives: [
+                        'فهم مبادئ التعلم المعزز',
+                        'تعلم خوارزميات Q-Learning',
+                        'تطبيق الشبكات العصبية في التعلم المعزز',
+                        'فهم تطبيقات الألعاب والروبوتات'
+                    ],
+                    topics: [
+                        'مقدمة في التعلم المعزز',
+                        'خوارزميات Q-Learning',
+                        'Deep Q Networks (DQN)',
+                        'Policy Gradient Methods',
+                        'تطبيقات في الألعاب والروبوتات'
+                    ]
+                },
+                'AI405': {
+                    name: 'الحوسبة السحابية للذكاء الاصطناعي',
+                    code: 'AI405',
+                    hours: '3 ساعات معتمدة',
+                    description: 'استخدام البنية التحتية السحابية لتطوير تطبيقات الذكاء الاصطناعي.',
+                    objectives: [
+                        'فهم خدمات السحابة للذكاء الاصطناعي',
+                        'تعلم نشر النماذج على السحابة',
+                        'تطبيق التدريب الموزع',
+                        'فهم إدارة البيانات السحابية'
+                    ],
+                    topics: [
+                        'خدمات AWS وGoogle Cloud للذكاء الاصطناعي',
+                        'نشر النماذج كخدمات ويب',
+                        'التدريب الموزع والمتوازي',
+                        'إدارة البيانات والأمان',
+                        'مراقبة وصيانة النماذج'
+                    ]
+                },
+                'AI406': {
+                    name: 'أخلاقيات الذكاء الاصطناعي',
+                    code: 'AI406',
+                    hours: '2 ساعة معتمدة',
+                    description: 'دراسة القضايا الأخلاقية والقانونية المتعلقة بالذكاء الاصطناعي.',
+                    objectives: [
+                        'فهم التحديات الأخلاقية للذكاء الاصطناعي',
+                        'تعلم مبادئ العدالة والشفافية',
+                        'فهم التأثير الاجتماعي للذكاء الاصطناعي',
+                        'تطبيق المبادئ الأخلاقية في التطوير'
+                    ],
+                    topics: [
+                        'الأخلاقيات في الذكاء الاصطناعي',
+                        'التحيز والعدالة في النماذج',
+                        'الشفافية وقابلية التفسير',
+                        'الخصوصية وحماية البيانات',
+                        'المسؤولية القانونية والاجتماعية'
+                    ]
+                },
+                'AI407': {
+                    name: 'الروبوتات والأنظمة الذكية',
+                    code: 'AI407',
+                    hours: '3 ساعات معتمدة',
+                    description: 'دراسة تطبيق الذكاء الاصطناعي في الروبوتات والأنظمة الذكية.',
+                    objectives: [
+                        'فهم أساسيات الروبوتات الذكية',
+                        'تعلم التحكم والملاحة',
+                        'تطبيق الاستشعار والإدراك',
+                        'فهم التفاعل بين الإنسان والروبوت'
+                    ],
+                    topics: [
+                        'مقدمة في الروبوتات الذكية',
+                        'التحكم والملاحة الذكية',
+                        'الاستشعار والإدراك',
+                        'التخطيط واتخاذ القرارات',
+                        'التفاعل بين الإنسان والروبوت'
+                    ]
+                },
+                'AI410': {
+                    name: 'مشروع التخرج (الذكاء الاصطناعي)',
+                    code: 'AI410',
+                    hours: '6 ساعات معتمدة',
+                    description: 'مشروع عملي شامل في مجال الذكاء الاصطناعي وعلم البيانات.',
+                    objectives: [
+                        'تطبيق المعرفة النظرية في مشروع عملي',
+                        'تطوير نماذج ذكاء اصطناعي متقدمة',
+                        'إجراء بحث علمي في مجال التخصص',
+                        'تقديم حلول مبتكرة لمشكلات حقيقية'
+                    ],
+                    topics: [
+                        'اختيار موضوع المشروع',
+                        'جمع وتحليل البيانات',
+                        'تطوير وتدريب النماذج',
+                        'تقييم الأداء والنتائج',
+                        'كتابة التقرير النهائي والعرض'
+                    ]
+                }
+            };
+            
+            const course = courseData[courseId];
+            if (course) {
+                content.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center bg-cyber-purple text-white px-4 py-2 rounded-full text-sm mb-4">
+                            <i class="fas fa-book ml-2"></i>
+                            ${course.code}
+                        </div>
+                        <h2 class="text-2xl font-bold text-cyber-purple mb-2">${course.name}</h2>
+                        <p class="text-gray-600">${course.hours}</p>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-6 rounded-xl mb-6">
+                        <h3 class="text-lg font-bold text-cyber-purple mb-3 flex items-center">
+                            <i class="fas fa-info-circle ml-2"></i>
+                            وصف المساق
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">${course.description}</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl border border-purple-200">
+                            <h3 class="text-lg font-bold text-cyber-purple mb-4 flex items-center">
+                                <i class="fas fa-bullseye ml-2"></i>
+                                أهداف المساق
+                            </h3>
+                            <ul class="space-y-2">
+                                ${course.objectives.map(obj => `
+                                    <li class="flex items-start text-gray-700">
+                                        <i class="fas fa-check-circle text-cyber-purple ml-2 mt-1 flex-shrink-0"></i>
+                                        <span>${obj}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border border-purple-200">
+                            <h3 class="text-lg font-bold text-cyber-purple mb-4 flex items-center">
+                                <i class="fas fa-list ml-2"></i>
+                                المواضيع المطروحة
+                            </h3>
+                            <ul class="space-y-2">
+                                ${course.topics.map(topic => `
+                                    <li class="flex items-start text-gray-700">
+                                        <i class="fas fa-arrow-left text-cyber-purple ml-2 mt-1 flex-shrink-0"></i>
+                                        <span>${topic}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeCourseModal() {
+            document.getElementById('courseModal').classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        // وظائف مودال أعضاء هيئة التدريس
+        function showFacultyDetails(facultyId) {
+            const modal = document.getElementById('facultyModal');
+            const content = document.getElementById('facultyModalContent');
+            
+            // منع التمرير في الخلفية
+            document.body.classList.add('modal-open');
+            
+            const facultyData = {
+                'head': {
+                    name: 'د. محمد أحمد العلي',
+                    position: 'رئيس قسم الهندسة والنظم الذكية',
+                    education: 'دكتوراه في هندسة الحاسوب - جامعة كاليفورنيا، بيركلي',
+                    experience: '15 سنة',
+                    specialization: 'أنظمة الحاسوب المدمجة، الذكاء الاصطناعي، إدارة المشاريع التقنية',
+                    achievements: [
+                        'حاصل على جائزة أفضل باحث في مجال الأنظمة الذكية 2020',
+                        'مؤلف لأكثر من 40 بحثاً محكماً في مجلات دولية',
+                        'مشرف على أكثر من 25 رسالة ماجستير ودكتوراه',
+                        'عضو في لجان تحكيم عدة مؤتمرات دولية'
+                    ],
+                    courses: [
+                        'إدارة المشاريع التقنية',
+                        'أنظمة الحاسوب المدمجة',
+                        'مقدمة في الذكاء الاصطناعي'
+                    ],
+                    email: 'm.ali@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الثالث، مكتب 301'
+                },
+                'dr1': {
+                    name: 'د. فاطمة محمود',
+                    position: 'أستاذ مساعد - أمن المعلومات',
+                    education: 'دكتوراه في أمن المعلومات السيبراني - جامعة أكسفورد',
+                    experience: '8 سنوات',
+                    specialization: 'الأمن السيبراني، التشفير، اختبار الاختراق الأخلاقي',
+                    achievements: [
+                        'خبيرة معتمدة في الأمن السيبراني (CISSP)',
+                        'مؤلفة لـ 25 بحثاً في مجال أمن المعلومات',
+                        'مدربة معتمدة في اختبار الاختراق الأخلاقي',
+                        'مستشارة أمن معلومات لعدة مؤسسات حكومية'
+                    ],
+                    courses: [
+                        'أساسيات أمن المعلومات',
+                        'التشفير وأمان البيانات',
+                        'اختبار الاختراق الأخلاقي',
+                        'الطب الشرعي الرقمي'
+                    ],
+                    email: 'f.mahmoud@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الثاني، مكتب 205'
+                },
+                'dr2': {
+                    name: 'د. خالد عبد الرحمن',
+                    position: 'أستاذ مشارك - الذكاء الاصطناعي',
+                    education: 'دكتوراه في الذكاء الاصطناعي - معهد ماساتشوستس للتكنولوجيا',
+                    experience: '12 سنة',
+                    specialization: 'تعلم الآلة، الشبكات العصبية، معالجة اللغات الطبيعية',
+                    achievements: [
+                        'باحث زائر في شركة Google AI لمدة سنتين',
+                        'مؤلف لأكثر من 35 بحثاً في مجال الذكاء الاصطناعي',
+                        'حاصل على براءة اختراع في مجال معالجة اللغة العربية',
+                        'مؤسس مشارك لشركة ناشئة في مجال الذكاء الاصطناعي'
+                    ],
+                    courses: [
+                        'مقدمة في الذكاء الاصطناعي',
+                        'تعلم الآلة والذكاء الاصطناعي',
+                        'الشبكات العصبية العميقة',
+                        'معالجة اللغات الطبيعية'
+                    ],
+                    email: 'k.abdulrahman@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الثالث، مكتب 310'
+                },
+                'dr3': {
+                    name: 'د. سارة أحمد خليل',
+                    position: 'أستاذ مساعد - هندسة البرمجيات',
+                    education: 'دكتوراه في هندسة البرمجيات - جامعة ستانفورد',
+                    experience: '7 سنوات',
+                    specialization: 'هندسة البرمجيات، تطوير التطبيقات المحمولة، DevOps',
+                    achievements: [
+                        'مطورة تطبيقات محمولة معتمدة من Google وApple',
+                        'مؤلفة لـ 20 بحثاً في مجال هندسة البرمجيات',
+                        'مدربة في شركات التكنولوجيا الكبرى',
+                        'فائزة بجائزة أفضل مشروع تخرج على مستوى الجامعة'
+                    ],
+                    courses: [
+                        'هندسة البرمجيات',
+                        'تطوير التطبيقات المحمولة',
+                        'إدارة مشاريع البرمجيات',
+                        'ضمان جودة البرمجيات'
+                    ],
+                    email: 's.khalil@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الثاني، مكتب 210'
+                },
+                'dr4': {
+                    name: 'د. عمر يوسف النجار',
+                    position: 'أستاذ مشارك - شبكات الحاسوب',
+                    education: 'دكتوراه في شبكات الحاسوب - جامعة كارنيجي ميلون',
+                    experience: '10 سنوات',
+                    specialization: 'شبكات الحاسوب، الحوسبة السحابية، إنترنت الأشياء',
+                    achievements: [
+                        'خبير معتمد في شبكات Cisco وJuniper',
+                        'مؤلف لـ 30 بحثاً في مجال الشبكات',
+                        'مستشار شبكات لعدة شركات تقنية',
+                        'محاضر دولي في مؤتمرات الشبكات'
+                    ],
+                    courses: [
+                        'شبكات الحاسوب',
+                        'أمن الشبكات والإنترنت',
+                        'الحوسبة السحابية',
+                        'إنترنت الأشياء'
+                    ],
+                    email: 'o.najjar@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الثاني، مكتب 215'
+                },
+                'dr5': {
+                    name: 'د. ليلى محمد حسن',
+                    position: 'أستاذ مساعد - قواعد البيانات',
+                    education: 'دكتوراه في قواعد البيانات وأنظمة المعلومات - جامعة هارفارد',
+                    experience: '6 سنوات',
+                    specialization: 'قواعد البيانات، البيانات الضخمة، ذكاء الأعمال',
+                    achievements: [
+                        'خبيرة معتمدة في Oracle وMicrosoft SQL Server',
+                        'مؤلفة لـ 18 بحثاً في مجال قواعد البيانات',
+                        'مطورة حلول قواعد بيانات لشركات كبرى',
+                        'حاصلة على جائزة أفضل أطروحة دكتوراه'
+                    ],
+                    courses: [
+                        'قواعد البيانات',
+                        'تصميم وإدارة قواعد البيانات',
+                        'تحليل البيانات الضخمة',
+                        'ذكاء الأعمال'
+                    ],
+                    email: 'l.hassan@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الثاني، مكتب 220'
+                },
+                'dr6': {
+                    name: 'د. أحمد سعيد المصري',
+                    position: 'أستاذ - الرياضيات التطبيقية',
+                    education: 'دكتوراه في الرياضيات التطبيقية - جامعة كامبريدج',
+                    experience: '18 سنة',
+                    specialization: 'الرياضيات التطبيقية، الخوارزميات، التحليل العددي',
+                    achievements: [
+                        'عضو الجمعية الدولية للرياضيات التطبيقية',
+                        'مؤلف لأكثر من 50 بحثاً في المجلات الدولية',
+                        'محرر مساعد في مجلة الرياضيات التطبيقية',
+                        'خبير استشاري في وزارة التعليم العالي'
+                    ],
+                    courses: [
+                        'الرياضيات للحاسوب',
+                        'التحليل العددي',
+                        'الخوارزميات المتقدمة',
+                        'الإحصاء والاحتمالات'
+                    ],
+                    email: 'a.masri@ucas.edu.ps',
+                    office: 'مبنى الهندسة، الطابق الأول، مكتب 105'
+                }
+            };
+            
+            const faculty = facultyData[facultyId];
+            if (faculty) {
+                content.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-2 mb-4">
+                            <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-user text-5xl text-gray-600"></i>
+                            </div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name}</h2>
+                        <p class="text-lg text-blue-600 font-medium">${faculty.position}</p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-graduation-cap text-blue-600 ml-2"></i> التحصيل الأكاديمي
+                            </h3>
+                            <p class="text-gray-600">${faculty.education}</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-xl">
+                                <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                                    <i class="fas fa-briefcase text-blue-600 ml-2"></i> سنوات الخبرة
+                                </h3>
+                                <p class="text-blue-700">${faculty.experience}</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-xl">
+                                <h3 class="font-bold text-green-800 mb-2 flex items-center">
+                                    <i class="fas fa-envelope text-green-600 ml-2"></i> البريد الإلكتروني
+                                </h3>
+                                <p class="text-green-700">${faculty.email}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-purple-800 mb-2 flex items-center">
+                                <i class="fas fa-star text-purple-600 ml-2"></i> التخصص
+                            </h3>
+                            <p class="text-purple-700">${faculty.specialization}</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-yellow-800 mb-3 flex items-center">
+                                <i class="fas fa-trophy text-yellow-600 ml-2"></i> الإنجازات والتميز
+                            </h3>
+                            <ul class="space-y-2">
+                                ${faculty.achievements.map(achievement => 
+                                    `<li class="text-yellow-700 flex items-start">
+                                        <i class="fas fa-medal text-yellow-600 ml-2 mt-1 text-sm"></i>
+                                        <span>${achievement}</span>
+                                    </li>`
+                                ).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-indigo-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-indigo-800 mb-3 flex items-center">
+                                <i class="fas fa-chalkboard-teacher text-indigo-600 ml-2"></i> المساقات التي يدرسها
+                            </h3>
+                            <ul class="space-y-2">
+                                ${faculty.courses.map(course => 
+                                    `<li class="text-indigo-700 flex items-center">
+                                        <i class="fas fa-book text-indigo-600 ml-2"></i>
+                                        <span>${course}</span>
+                                    </li>`
+                                ).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-map-marker-alt text-gray-600 ml-2"></i> مكتب الأستاذ
+                            </h3>
+                            <p class="text-gray-600">${faculty.office}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeFacultyModal() {
+            document.getElementById('facultyModal').classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        // وظائف التوسيع والتصغير للمناهج الدراسية
+        function toggleCurriculumExpansion(sectionId, type) {
+            const section = document.getElementById(sectionId);
+            const icon = document.getElementById(type + 'ExpandIcon');
+            const modal = document.getElementById('specialtyModal');
+            
+            if (section.classList.contains('expanded')) {
+                // تصغير
+                section.classList.remove('expanded');
+                icon.className = 'fas fa-expand';
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // إزالة زر الإغلاق
+                const closeBtn = section.querySelector('.close-expanded-btn');
+                if (closeBtn) {
+                    closeBtn.remove();
+                }
+            } else {
+                // توسيع
+                section.classList.add('expanded');
+                icon.className = 'fas fa-compress';
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // إضافة زر إغلاق في وضع التوسيع
+                if (!section.querySelector('.close-expanded-btn')) {
+                    const closeBtn = document.createElement('button');
+                    closeBtn.className = 'close-expanded-btn absolute top-4 left-4 bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-600 transition-colors';
+                    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    closeBtn.onclick = () => toggleCurriculumExpansion(sectionId, type);
+                    section.appendChild(closeBtn);
+                }
+            }
+        }
+
+        // إغلاق المودال عند النقر خارجه
+        document.getElementById('specialtyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('courseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCourseModal();
+            }
+        });
+
+        document.getElementById('facultyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFacultyModal();
+            }
+        });
+
+        // إضافة event listener لمفتاح Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (!document.getElementById('specialtyModal').classList.contains('hidden')) {
+                    closeModal();
+                }
+                if (!document.getElementById('courseModal').classList.contains('hidden')) {
+                    closeCourseModal();
+                }
+                if (!document.getElementById('facultyModal').classList.contains('hidden')) {
+                    closeFacultyModal();
+                }
+            }
+        });
+
+        // تفعيل التأثيرات عند التحميل
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.reveal-animation').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
