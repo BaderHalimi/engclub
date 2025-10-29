@@ -393,7 +393,7 @@
                 <img src="https://ucas.edu.ps/assets/images/progs/eng.svg" alt="عمادة الهندسة" class="w-20 h-20 mx-auto mb-6 filter brightness-0 invert">
             </div>
             <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6">
-                عمادة الهندسة والنظم الذكية
+                قسم هندسة الحاسوب
             </h1>
             <p class="text-xl md:text-2xl text-white opacity-90 mb-8 max-w-4xl mx-auto">
                 انطلق معنا في رحلة مثيرة لاستكشاف عالم أمن المعلومات والذكاء الاصطناعي
@@ -982,127 +982,30 @@
     </div>
 
     <!-- Modal لتفاصيل أعضاء هيئة التدريس -->
-    <div id="facultyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
-        <div class="modal-content bg-white rounded-3xl p-8 max-w-2xl mx-auto my-20 relative">
-            <button onclick="closeFacultyModal()" class="absolute top-4 left-4 text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-            <div id="facultyModalContent" class="text-right overflow-y-auto max-h-[70vh] pr-4">
-                <!-- المحتوى سيتم إضافته ديناميكياً -->
+    <div id="facultyModal" class="fixed inset-0 z-50 hidden modal-overlay">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-3xl modal-content">
+                <div class="modal-header">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-gray-800">تفاصيل عضو هيئة التدريس</h2>
+                        <button onclick="closeFacultyModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="facultyModalContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button onclick="closeFacultyModal()" class="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600 transition-colors">
+                            إغلاق
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function showFacultyDetails(facultyId) {
-            const modal = document.getElementById('facultyModal');
-            const content = document.getElementById('facultyModalContent');
-            
-            // التحقق من وجود البيانات
-            if (!window.siteData || !window.siteData.faculty || !window.siteData.faculty[facultyId]) {
-                console.error('لا يمكن العثور على بيانات عضو هيئة التدريس');
-                return;
-            }
-
-            const faculty = window.siteData.faculty[facultyId];
-            
-            content.innerHTML = `
-                <div class="text-center mb-6">
-                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient} p-2 mb-4">
-                        <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
-                            <i class="fas fa-user text-5xl text-gray-600"></i>
-                        </div>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name}</h2>
-                    <p class="text-lg text-blue-600 font-medium">${faculty.position}</p>
-                </div>
-                
-                <div class="space-y-6">
-                    <div class="bg-gray-50 p-4 rounded-xl">
-                        <h3 class="font-bold text-gray-800 mb-2 flex items-center">
-                            <i class="fas fa-graduation-cap text-blue-600 ml-2"></i>
-                            المؤهل العلمي
-                        </h3>
-                        <p class="text-gray-600">${faculty.education}</p>
-                    </div>
-
-                    ${faculty.experience ? `
-                        <div class="bg-blue-50 p-4 rounded-xl">
-                            <h3 class="font-bold text-blue-800 mb-2 flex items-center">
-                                <i class="fas fa-briefcase text-blue-600 ml-2"></i>
-                                الخبرة
-                            </h3>
-                            <p class="text-blue-700">${faculty.experience}</p>
-                        </div>
-                    ` : ''}
-                    
-                    <div class="bg-purple-50 p-4 rounded-xl">
-                        <h3 class="font-bold text-purple-800 mb-2 flex items-center">
-                            <i class="fas fa-star text-purple-600 ml-2"></i>
-                            التخصص
-                        </h3>
-                        <p class="text-purple-700">${faculty.specialization}</p>
-                    </div>
-                    
-                    ${faculty.achievements ? `
-                        <div class="bg-yellow-50 p-4 rounded-xl">
-                            <h3 class="font-bold text-yellow-800 mb-3 flex items-center">
-                                <i class="fas fa-trophy text-yellow-600 ml-2"></i>
-                                الإنجازات
-                            </h3>
-                            <ul class="space-y-2">
-                                ${faculty.achievements.map(achievement => `
-                                    <li class="text-yellow-700 flex items-start">
-                                        <i class="fas fa-medal text-yellow-600 ml-2 mt-1"></i>
-                                        <span>${achievement}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                    ` : ''}
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-green-50 p-4 rounded-xl">
-                            <h3 class="font-bold text-green-800 mb-2 flex items-center">
-                                <i class="fas fa-envelope text-green-600 ml-2"></i>
-                                البريد الإلكتروني
-                            </h3>
-                            <p class="text-green-700 text-sm">${faculty.email}</p>
-                        </div>
-                        
-                        <div class="bg-gray-50 p-4 rounded-xl">
-                            <h3 class="font-bold text-gray-800 mb-2 flex items-center">
-                                <i class="fas fa-map-marker-alt text-gray-600 ml-2"></i>
-                                المكتب
-                            </h3>
-                            <p class="text-gray-600 text-sm">${faculty.office}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            modal.classList.remove('hidden');
-        }
-
-        function closeFacultyModal() {
-            const modal = document.getElementById('facultyModal');
-            modal.classList.add('hidden');
-        }
-
-        // إغلاق المودال عند النقر خارجه
-        document.getElementById('facultyModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFacultyModal();
-            }
-        });
-
-        // إغلاق المودال عند الضغط على ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeFacultyModal();
-            }
-        });
-    </script>
 
     <!-- Modal للتخصصات -->
     <div id="specialtyModal" class="fixed inset-0 z-50 hidden modal-overlay">
