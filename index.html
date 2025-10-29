@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/logo.png" type="image/x-icon">
-    <title>رحلة اكتشاف التخصصات - قسم هندسة الحاسوب</title>
+    <title>رحلة اكتشاف التخصصات - النادي الهندسي</title>
     <!-- Load Noto Sans Arabic Font -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Load Font Awesome Icons -->
@@ -70,20 +70,19 @@
         }
 
         .specialty-card {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0.95);
-            opacity: 0.8;
+            transition: all 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(0);
         }
 
         .specialty-card:hover {
-            transform: scale(1.05) translateY(-10px);
-            opacity: 1;
+            transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
         .specialty-card.active {
-            transform: scale(1.02);
-            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
 
         .progress-bar {
@@ -118,14 +117,13 @@
         }
 
         .reveal-animation {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal-animation.visible {
             opacity: 1;
             transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .reveal-animation:hover {
+            transform: translateY(-5px);
         }
 
         .modal-overlay {
@@ -395,10 +393,10 @@
                 <img src="https://ucas.edu.ps/assets/images/progs/eng.svg" alt="عمادة الهندسة" class="w-20 h-20 mx-auto mb-6 filter brightness-0 invert">
             </div>
             <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6">
-                قسم هندسة الحاسوب
+                عمادة الهندسة والنظم الذكية
             </h1>
             <p class="text-xl md:text-2xl text-white opacity-90 mb-8 max-w-4xl mx-auto">
-                انطلق معنا في رحلة مثيرة لاستكشاف عالم التكنولوجيا وهندسة الحاسوب
+                انطلق معنا في رحلة مثيرة لاستكشاف عالم أمن المعلومات والذكاء الاصطناعي
             </p>
             <div class="inline-flex items-center bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-8 py-4 text-white">
                 <span class="text-lg font-medium ml-2">ابدأ الاستكشاف</span>
@@ -423,11 +421,19 @@
             </div>
         </section>
 
-        <!-- التخصصات (4 تخصصات) -->
-        <section class="grid md:grid-cols-2 gap-6 mb-16">
+        <!-- التخصصات -->
+        <section class="space-y-16 mb-16">
             
-            <!-- تخصص أمن المعلومات -->
-            <div class="specialty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white border-opacity-50 cursor-pointer" onclick="exploreSpecialty('cybersecurity')">
+        <!-- برامج البكالوريوس -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">برامج البكالوريوس</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- تخصص أمن المعلومات السيبراني - بكالوريوس -->
+            <div class="specialty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-2 border-cyber-purple cursor-pointer transform hover:scale-105 transition-all duration-300 relative overflow-hidden" onclick="exploreSpecialty('cybersecurity')">
+                <!-- شريط مميز -->
+                <div class="absolute top-0 right-0 bg-cyber-purple text-white py-2 px-6 transform rotate-45 translate-x-8 translate-y-2 shadow-lg">
+                    <span class="text-sm font-bold">برنامج مميز</span>
+                </div>>
                 <div class="text-center mb-6">
                     <div class="text-6xl mb-4 text-cyber-purple">
                         <i class="fas fa-shield-alt"></i>
@@ -435,8 +441,14 @@
                     <h2 class="text-3xl font-bold text-cyber-purple mb-2">هندسة أمن المعلومات السيبراني</h2>
                     <div class="flex justify-center items-center space-x-4 space-x-reverse text-sm text-gray-600">
                         <span class="bg-cyber-purple text-white px-3 py-1 rounded-full">بكالوريوس</span>
-                        <span class="bg-gray-200 px-3 py-1 rounded-full">5 سنوات</span>
+                        <span class="bg-cyber-purple bg-opacity-20 font-bold px-3 py-1 rounded-full animate-pulse">4 سنوات</span>
                     </div>
+                </div>
+
+                <!-- شريط تميز البرنامج -->
+                <div class="bg-cyber-purple bg-opacity-10 text-cyber-purple font-bold text-sm py-2 px-4 rounded-lg mt-2 flex items-center justify-center">
+                    <i class="fas fa-star ml-2"></i>
+                    برنامج متميز بمدة دراسية مختصرة
                 </div>
                 
                 <div class="space-y-4">
@@ -519,6 +531,128 @@
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
+
+            <!-- برامج الدبلوم -->
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold text-white text-center mb-8">برامج الدبلوم</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- دبلوم أمن المعلومات -->
+                    <div class="specialty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-2 border-blue-600 cursor-pointer transform hover:scale-105 transition-all duration-300 relative overflow-hidden" onclick="exploreSpecialty('infosec-diploma')">
+                        <!-- شريط مميز -->
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white py-2 px-6 transform rotate-45 translate-x-8 translate-y-2 shadow-lg">
+                            <span class="text-sm font-bold">برنامج مهني</span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-6xl mb-4 text-blue-600">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-blue-600 mb-2">أمن المعلومات</h2>
+                            <div class="flex justify-center items-center space-x-4 space-x-reverse text-sm text-gray-600">
+                                <span class="bg-blue-600 text-white px-3 py-1 rounded-full">دبلوم</span>
+                                <span class="bg-blue-600 bg-opacity-20 font-bold px-3 py-1 rounded-full">سنتان</span>
+                            </div>
+                        </div>
+                        
+                        <!-- شريط تميز البرنامج -->
+                        <div class="bg-blue-600 bg-opacity-10 text-blue-600 font-bold text-sm py-2 px-4 rounded-lg mt-2 flex items-center justify-center">
+                            <i class="fas fa-certificate ml-2"></i>
+                            برنامج مهني عالي الكفاءة
+                        </div>
+
+                        <div class="space-y-4 mt-4">
+                            <div class="bg-blue-50 p-4 rounded-xl">
+                                <h3 class="font-bold mb-2 text-blue-600 flex items-center">
+                                    <i class="fas fa-bullseye ml-2"></i> ماذا ستتعلم؟
+                                </h3>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-check-circle text-blue-600 ml-2"></i> مبادئ أمن المعلومات</li>
+                                    <li><i class="fas fa-check-circle text-blue-600 ml-2"></i> تأمين الشبكات والأنظمة</li>
+                                    <li><i class="fas fa-check-circle text-blue-600 ml-2"></i> حماية البيانات والخصوصية</li>
+                                    <li><i class="fas fa-check-circle text-blue-600 ml-2"></i> تقنيات التشفير الأساسية</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-xl">
+                                <h3 class="font-bold mb-2 text-blue-600 flex items-center">
+                                    <i class="fas fa-briefcase ml-2"></i> فرص العمل
+                                </h3>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-arrow-left text-blue-600 ml-2"></i> فني أمن معلومات</li>
+                                    <li><i class="fas fa-arrow-left text-blue-600 ml-2"></i> مساعد محلل أمني</li>
+                                    <li><i class="fas fa-arrow-left text-blue-600 ml-2"></i> فني دعم أمن الشبكات</li>
+                                    <li><i class="fas fa-arrow-left text-blue-600 ml-2"></i> مساعد مدير أمن المعلومات</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6">
+                            <div class="bg-blue-600 text-white px-6 py-3 rounded-full inline-flex items-center group hover:bg-blue-700 transition-colors">
+                                <span class="ml-2">استكشف التخصص</span>
+                                <i class="fas fa-search transform group-hover:scale-110 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- دبلوم شبكات الحاسوب والإنترنت -->
+                    <div class="specialty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border-2 border-green-600 cursor-pointer transform hover:scale-105 transition-all duration-300 relative overflow-hidden" onclick="exploreSpecialty('networks-diploma')">
+                        <!-- شريط مميز -->
+                        <div class="absolute top-0 right-0 bg-green-600 text-white py-2 px-6 transform rotate-45 translate-x-8 translate-y-2 shadow-lg">
+                            <span class="text-sm font-bold">برنامج تقني</span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="text-6xl mb-4 text-green-600">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-green-600 mb-2">شبكات الحاسوب والإنترنت</h2>
+                            <div class="flex justify-center items-center space-x-4 space-x-reverse text-sm text-gray-600">
+                                <span class="bg-green-600 text-white px-3 py-1 rounded-full">دبلوم</span>
+                                <span class="bg-green-600 bg-opacity-20 font-bold px-3 py-1 rounded-full">سنتان</span>
+                            </div>
+                        </div>
+
+                        <!-- شريط تميز البرنامج -->
+                        <div class="bg-green-600 bg-opacity-10 text-green-600 font-bold text-sm py-2 px-4 rounded-lg mt-2 flex items-center justify-center">
+                            <i class="fas fa-server ml-2"></i>
+                            برنامج تقني متخصص في الشبكات
+                        </div>
+                        
+                        <div class="space-y-4 mt-4">
+                            <div class="bg-green-50 p-4 rounded-xl">
+                                <h3 class="font-bold mb-2 text-green-600 flex items-center">
+                                    <i class="fas fa-bullseye ml-2"></i> ماذا ستتعلم؟
+                                </h3>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-check-circle text-green-600 ml-2"></i> تصميم وإدارة الشبكات</li>
+                                    <li><i class="fas fa-check-circle text-green-600 ml-2"></i> بروتوكولات الشبكات</li>
+                                    <li><i class="fas fa-check-circle text-green-600 ml-2"></i> أمن الشبكات الأساسي</li>
+                                    <li><i class="fas fa-check-circle text-green-600 ml-2"></i> إدارة خوادم الشبكات</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded-xl">
+                                <h3 class="font-bold mb-2 text-green-600 flex items-center">
+                                    <i class="fas fa-briefcase ml-2"></i> فرص العمل
+                                </h3>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li><i class="fas fa-arrow-left text-green-600 ml-2"></i> فني شبكات حاسوب</li>
+                                    <li><i class="fas fa-arrow-left text-green-600 ml-2"></i> مدير شبكات مساعد</li>
+                                    <li><i class="fas fa-arrow-left text-green-600 ml-2"></i> فني دعم شبكات</li>
+                                    <li><i class="fas fa-arrow-left text-green-600 ml-2"></i> مسؤول نظم وشبكات</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6">
+                            <div class="bg-green-600 text-white px-6 py-3 rounded-full inline-flex items-center group hover:bg-green-700 transition-colors">
+                                <span class="ml-2">استكشف التخصص</span>
+                                <i class="fas fa-search transform group-hover:scale-110 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- الكادر التعليمي -->
@@ -545,11 +679,11 @@
                                     رئيس القسم
                                 </div>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">د. محمد أحمد العلي</h3>
-                            <p class="text-gray-600 mb-4">دكتوراه في هندسة الحاسوب</p>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">د. محمد عوني مطر</h3>
+                            <p class="text-gray-600 mb-4">دكتوراه في الهندسة الكهربائية والإلكترونية - جامعة اسكيشهير عثمان غازي، تركيا</p>
                             <div class="flex justify-center space-x-2 space-x-reverse">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">قائد أكاديمي</span>
-                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">خبير تقني</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">رئيس القسم</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">باحث أكاديمي</span>
                             </div>
                             <div class="mt-4 text-center">
                                 <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full inline-flex items-center text-sm">
@@ -568,35 +702,8 @@
                     <i class="fas fa-chalkboard-teacher text-3xl ml-3 text-text-white"></i> أعضاء هيئة التدريس
                 </h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- عضو هيئة تدريس 1 -->
-                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr1')">
-                        <div class="text-center">
-                            <div class="relative mb-4">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-cyber-purple to-blue-600 p-1">
-                                    <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
-                                        <i class="fas fa-user text-3xl text-gray-600"></i>
-                                    </div>
-                                </div>
-                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-cyber-purple text-white px-2 py-1 rounded-full text-xs">
-                                    أمن معلومات
-                                </div>
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. فاطمة محمود</h4>
-                            <p class="text-gray-600 text-sm mb-3">دكتوراه في أمن المعلومات</p>
-                            <div class="flex justify-center mb-3">
-                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">خبيرة أمن سيبراني</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="bg-cyber-purple text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
-                                    <span class="ml-1">التفاصيل</span>
-                                    <i class="fas fa-info-circle"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- عضو هيئة تدريس 2 -->
-                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr2')">
+                    <!-- د. محمد الطهراوي -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr_tahrawi')">
                         <div class="text-center">
                             <div class="relative mb-4">
                                 <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-ai-orange to-yellow-500 p-1">
@@ -608,10 +715,10 @@
                                     ذكاء اصطناعي
                                 </div>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. خالد عبد الرحمن</h4>
-                            <p class="text-gray-600 text-sm mb-3">دكتوراه في الذكاء الاصطناعي</p>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. محمد الطهراوي</h4>
+                            <p class="text-gray-600 text-sm mb-3">دكتوراه في علوم الحاسوب - تخصص الذكاء الاصطناعي</p>
                             <div class="flex justify-center mb-3">
-                                <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">خبير تعلم آلة</span>
+                                <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">منسق تخصص الذكاء الاصطناعي</span>
                             </div>
                             <div class="text-center">
                                 <div class="bg-ai-orange text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
@@ -622,26 +729,26 @@
                         </div>
                     </div>
 
-                    <!-- عضو هيئة تدريس 3 -->
-                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr3')">
+                    <!-- د. سناء الصايغ -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr_sayegh')">
                         <div class="text-center">
                             <div class="relative mb-4">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-green-500 to-blue-500 p-1">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-pink-500 to-rose-500 p-1">
                                     <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
                                         <i class="fas fa-user text-3xl text-gray-600"></i>
                                     </div>
                                 </div>
-                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-2 py-1 rounded-full text-xs">
-                                    هندسة برمجيات
+                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-pink-500 text-white px-2 py-1 rounded-full text-xs">
+                                    علوم حاسوب
                                 </div>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. سارة أحمد خليل</h4>
-                            <p class="text-gray-600 text-sm mb-3">دكتوراه في هندسة البرمجيات</p>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. سناء الصايغ</h4>
+                            <p class="text-gray-600 text-sm mb-3">دكتوراه في علوم الحاسوب</p>
                             <div class="flex justify-center mb-3">
-                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">خبيرة تطوير</span>
+                                <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">مسؤول معادلات الطالبات</span>
                             </div>
                             <div class="text-center">
-                                <div class="bg-green-500 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
+                                <div class="bg-pink-500 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
                                     <span class="ml-1">التفاصيل</span>
                                     <i class="fas fa-info-circle"></i>
                                 </div>
@@ -649,26 +756,53 @@
                         </div>
                     </div>
 
-                    <!-- عضو هيئة تدريس 4 -->
-                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr4')">
+                    <!-- م. محمد الشوربجي -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('eng_shorbaji')">
                         <div class="text-center">
                             <div class="relative mb-4">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-red-500 to-pink-500 p-1">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-cyber-purple to-blue-600 p-1">
                                     <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
                                         <i class="fas fa-user text-3xl text-gray-600"></i>
                                     </div>
                                 </div>
-                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">
+                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-cyber-purple text-white px-2 py-1 rounded-full text-xs">
+                                    أمن معلومات
+                                </div>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">م. محمد الشوربجي</h4>
+                            <p class="text-gray-600 text-sm mb-3">ماجستير في أمن المعلومات</p>
+                            <div class="flex justify-center mb-3">
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">منسق الأمن السيبراني</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-cyber-purple text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
+                                    <span class="ml-1">التفاصيل</span>
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- م. حسن السميري -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('eng_sumairi')">
+                        <div class="text-center">
+                            <div class="relative mb-4">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-green-600 to-green-400 p-1">
+                                    <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+                                        <i class="fas fa-user text-3xl text-gray-600"></i>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-2 py-1 rounded-full text-xs">
                                     شبكات حاسوب
                                 </div>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. عمر يوسف النجار</h4>
-                            <p class="text-gray-600 text-sm mb-3">دكتوراه في شبكات الحاسوب</p>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">م. حسن السميري</h4>
+                            <p class="text-gray-600 text-sm mb-3">ماجستير في شبكات الحاسوب</p>
                             <div class="flex justify-center mb-3">
-                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">خبير شبكات</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">منسق شبكات الحاسوب</span>
                             </div>
                             <div class="text-center">
-                                <div class="bg-red-500 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
+                                <div class="bg-green-600 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
                                     <span class="ml-1">التفاصيل</span>
                                     <i class="fas fa-info-circle"></i>
                                 </div>
@@ -676,23 +810,50 @@
                         </div>
                     </div>
 
-                    <!-- عضو هيئة تدريس 5 -->
-                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr5')">
+                    <!-- م. محمود الشيخ خليل -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('eng_sheikh')">
                         <div class="text-center">
                             <div class="relative mb-4">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-1">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-600 to-blue-400 p-1">
+                                    <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+                                        <i class="fas fa-user text-3xl text-gray-600"></i>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-2 py-1 rounded-full text-xs">
+                                    أمن معلومات
+                                </div>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">م. محمود الشيخ خليل</h4>
+                            <p class="text-gray-600 text-sm mb-3">ماجستير في أمن المعلومات</p>
+                            <div class="flex justify-center mb-3">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">منسق دبلوم أمن المعلومات</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-blue-600 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
+                                    <span class="ml-1">التفاصيل</span>
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- م. تامر اليازوري -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('eng_yazouri')">
+                        <div class="text-center">
+                            <div class="relative mb-4">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 p-1">
                                     <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
                                         <i class="fas fa-user text-3xl text-gray-600"></i>
                                     </div>
                                 </div>
                                 <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white px-2 py-1 rounded-full text-xs">
-                                    قواعد بيانات
+                                    علوم حاسوب
                                 </div>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. ليلى محمد حسن</h4>
-                            <p class="text-gray-600 text-sm mb-3">دكتوراه في قواعد البيانات</p>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">م. تامر اليازوري</h4>
+                            <p class="text-gray-600 text-sm mb-3">ماجستير في علوم الحاسوب</p>
                             <div class="flex justify-center mb-3">
-                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">خبيرة بيانات</span>
+                                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">مشرف التدريب الميداني</span>
                             </div>
                             <div class="text-center">
                                 <div class="bg-indigo-500 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
@@ -703,26 +864,26 @@
                         </div>
                     </div>
 
-                    <!-- عضو هيئة تدريس 6 -->
-                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('dr6')">
+                    <!-- م. سامح سالم -->
+                    <div class="faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="showFacultyDetails('eng_salem')">
                         <div class="text-center">
                             <div class="relative mb-4">
-                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 p-1">
+                                <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-1">
                                     <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
                                         <i class="fas fa-user text-3xl text-gray-600"></i>
                                     </div>
                                 </div>
-                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-teal-500 text-white px-2 py-1 rounded-full text-xs">
-                                    رياضيات حاسوب
+                                <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 bg-purple-500 text-white px-2 py-1 rounded-full text-xs">
+                                    علوم حاسوب
                                 </div>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-800 mb-1">د. أحمد سعيد المصري</h4>
-                            <p class="text-gray-600 text-sm mb-3">دكتوراه في الرياضيات التطبيقية</p>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">م. سامح سالم</h4>
+                            <p class="text-gray-600 text-sm mb-3">ماجستير في علوم الحاسوب</p>
                             <div class="flex justify-center mb-3">
-                                <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs">خبير رياضيات</span>
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">منسق مشاريع التخرج</span>
                             </div>
                             <div class="text-center">
-                                <div class="bg-teal-500 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
+                                <div class="bg-purple-500 text-white px-3 py-1 rounded-full inline-flex items-center text-xs">
                                     <span class="ml-1">التفاصيل</span>
                                     <i class="fas fa-info-circle"></i>
                                 </div>
@@ -773,7 +934,7 @@
         <!-- إحصائيات ومعلومات إضافية -->
         <section class="bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 mb-16 reveal-animation">
             <h2 class="text-3xl font-bold text-white text-center mb-8 flex items-center justify-center">
-                <i class="fas fa-university text-4xl ml-4"></i> عن قسم هندسة الحاسوب
+                <i class="fas fa-university text-4xl ml-4"></i> عن عمادة الهندسة والنظم الذكية
             </h2>
             <div class="grid md:grid-cols-3 gap-6 text-center">
                 <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6">
@@ -806,7 +967,7 @@
                 <h2 class="text-3xl font-bold text-white mb-4 flex items-center justify-center">
                     <i class="fas fa-rocket text-4xl ml-4"></i> جاهز لبدء رحلتك؟
                 </h2>
-                <p class="text-xl text-white opacity-90 mb-6">انضم إلى عائلة قسم هندسة الحاسوب واكتشف مستقبلك المهني</p>
+                <p class="text-xl text-white opacity-90 mb-6">انضم إلى عائلة عمادة الهندسة والنظم الذكية واكتشف مستقبلك المهني</p>
                 <div class="space-y-4 md:space-y-0 md:space-x-4 md:space-x-reverse md:flex md:justify-center">
                     <a href="https://my.ucas.edu.ps/new_application.aspx" target="_blank" class="inline-flex items-center bg-white text-primary-blue px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors">
                         <i class="fas fa-bullseye ml-2"></i> تقدم للقبول الآن
@@ -821,30 +982,127 @@
     </div>
 
     <!-- Modal لتفاصيل أعضاء هيئة التدريس -->
-    <div id="facultyModal" class="fixed inset-0 z-50 hidden modal-overlay">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-3xl modal-content">
-                <div class="modal-header">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-bold text-gray-800">تفاصيل عضو هيئة التدريس</h2>
-                        <button onclick="closeFacultyModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div id="facultyModalContent"></div>
-                </div>
-                <div class="modal-footer">
-                    <div class="text-center">
-                        <button onclick="closeFacultyModal()" class="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600 transition-colors">
-                            إغلاق
-                        </button>
-                    </div>
-                </div>
+    <div id="facultyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div class="modal-content bg-white rounded-3xl p-8 max-w-2xl mx-auto my-20 relative">
+            <button onclick="closeFacultyModal()" class="absolute top-4 left-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div id="facultyModalContent" class="text-right overflow-y-auto max-h-[70vh] pr-4">
+                <!-- المحتوى سيتم إضافته ديناميكياً -->
             </div>
         </div>
     </div>
+
+    <script>
+        function showFacultyDetails(facultyId) {
+            const modal = document.getElementById('facultyModal');
+            const content = document.getElementById('facultyModalContent');
+            
+            // التحقق من وجود البيانات
+            if (!window.siteData || !window.siteData.faculty || !window.siteData.faculty[facultyId]) {
+                console.error('لا يمكن العثور على بيانات عضو هيئة التدريس');
+                return;
+            }
+
+            const faculty = window.siteData.faculty[facultyId];
+            
+            content.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient} p-2 mb-4">
+                        <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+                            <i class="fas fa-user text-5xl text-gray-600"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name}</h2>
+                    <p class="text-lg text-blue-600 font-medium">${faculty.position}</p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-4 rounded-xl">
+                        <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <i class="fas fa-graduation-cap text-blue-600 ml-2"></i>
+                            المؤهل العلمي
+                        </h3>
+                        <p class="text-gray-600">${faculty.education}</p>
+                    </div>
+
+                    ${faculty.experience ? `
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                                <i class="fas fa-briefcase text-blue-600 ml-2"></i>
+                                الخبرة
+                            </h3>
+                            <p class="text-blue-700">${faculty.experience}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="bg-purple-50 p-4 rounded-xl">
+                        <h3 class="font-bold text-purple-800 mb-2 flex items-center">
+                            <i class="fas fa-star text-purple-600 ml-2"></i>
+                            التخصص
+                        </h3>
+                        <p class="text-purple-700">${faculty.specialization}</p>
+                    </div>
+                    
+                    ${faculty.achievements ? `
+                        <div class="bg-yellow-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-yellow-800 mb-3 flex items-center">
+                                <i class="fas fa-trophy text-yellow-600 ml-2"></i>
+                                الإنجازات
+                            </h3>
+                            <ul class="space-y-2">
+                                ${faculty.achievements.map(achievement => `
+                                    <li class="text-yellow-700 flex items-start">
+                                        <i class="fas fa-medal text-yellow-600 ml-2 mt-1"></i>
+                                        <span>${achievement}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-green-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-green-800 mb-2 flex items-center">
+                                <i class="fas fa-envelope text-green-600 ml-2"></i>
+                                البريد الإلكتروني
+                            </h3>
+                            <p class="text-green-700 text-sm">${faculty.email}</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-map-marker-alt text-gray-600 ml-2"></i>
+                                المكتب
+                            </h3>
+                            <p class="text-gray-600 text-sm">${faculty.office}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeFacultyModal() {
+            const modal = document.getElementById('facultyModal');
+            modal.classList.add('hidden');
+        }
+
+        // إغلاق المودال عند النقر خارجه
+        document.getElementById('facultyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFacultyModal();
+            }
+        });
+
+        // إغلاق المودال عند الضغط على ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeFacultyModal();
+            }
+        });
+    </script>
 
     <!-- Modal للتخصصات -->
     <div id="specialtyModal" class="fixed inset-0 z-50 hidden modal-overlay">
