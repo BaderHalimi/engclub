@@ -78,7 +78,7 @@ function populatePageData() {
     console.log('📊 إحصائيات البيانات:', getDataStatistics());
 
     // تحديث عنوان الصفحة
-    document.title = siteData.siteInfo.title;
+    // document.title = siteData.siteInfo.title;
 
     // تحديث الإحصائيات
     updateStatistics();
@@ -570,6 +570,7 @@ function showFacultyDetails(facultyId) {
 
     // التحقق من تحميل البيانات
     if (!siteData || !siteData.faculty || !siteData.faculty[facultyId]) {
+        console.error('لا يمكن تحميل بيانات عضو هيئة التدريس:', facultyId);
         content.innerHTML = '<p class="text-center text-red-600">عذراً، لا يمكن تحميل بيانات عضو هيئة التدريس</p>';
         modal.classList.remove('hidden');
         return;
