@@ -568,93 +568,140 @@ function showFacultyDetails(facultyId) {
     // منع التمرير في الخلفية
     document.body.classList.add('modal-open');
 
-    // التحقق من تحميل البيانات
-    if (!siteData || !siteData.faculty || !siteData.faculty[facultyId]) {
+    // التحقق من تحميل البيانات وصحة المعرف
+    if (!siteData || !siteData.faculty) {
+        console.error('البيانات غير متوفرة');
+        content.innerHTML = '<p class="text-center text-red-600">عذراً، البيانات غير متوفرة</p>';
+        modal.classList.remove('hidden');
+        return;
+    }
+
+    // البحث عن عضو هيئة التدريس إما بالمعرف المباشر أو في المصفوفة
+    let faculty;
+    if (siteData.faculty[facultyId]) {
+        faculty = siteData.faculty[facultyId];
+    } else {
+        // البحث في مصفوفة الأعضاء
+        faculty = Object.values(siteData.faculty).find(f => f.id === facultyId);
+    }
+
+    if (!faculty) {
         console.error('لا يمكن تحميل بيانات عضو هيئة التدريس:', facultyId);
         content.innerHTML = '<p class="text-center text-red-600">عذراً، لا يمكن تحميل بيانات عضو هيئة التدريس</p>';
         modal.classList.remove('hidden');
         return;
     }
 
-    const faculty = siteData.faculty[facultyId];
-
-    content.innerHTML = `
+    // تحضير محتوى الـ modal
+    let modalContent = `
         <div class="text-center mb-6">
-            <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient} p-2 mb-4">
+            <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient || 'from-blue-500 to-blue-700'} p-2 mb-4">
                 <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
                     <i class="fas fa-user text-5xl text-gray-600"></i>
                 </div>
             </div>
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name}</h2>
-            <p class="text-lg text-blue-600 font-medium">${faculty.position}</p>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name || 'غير محدد'}</h2>
+            <p class="text-lg text-blue-600 font-medium">${faculty.position || 'غير محدد'}</p>
         </div>
         
         <div class="space-y-6">
-            <div class="bg-gray-50 p-4 rounded-xl">
-                <h3 class="font-bold text-gray-800 mb-2 flex items-center">
-                    <i class="fas fa-graduation-cap text-blue-600 ml-2"></i> التحصيل الأكاديمي
-                </h3>
-                <p class="text-gray-600">${faculty.education}</p>
-            </div>
+            ${faculty.degree ? `
+                <div class="bg-gray-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-graduation-cap text-blue-600 ml-2"></i> الدرجة العلمية
+                    </h3>
+                    <p class="text-gray-600">${faculty.degree}</p>
+                </div>
+            ` : ''}
             
             <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-blue-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-blue-800 mb-2 flex items-center">
-                        <i class="fas fa-briefcase text-blue-600 ml-2"></i> سنوات الخبرة
+                ${faculty.email ? `
+                    <div class="bg-green-50 p-4 rounded-xl">
+                        <h3 class="font-bold text-green-800 mb-2 flex items-center">
+                            <i class="fas fa-envelope text-green-600 ml-2"></i> البريد الإلكتروني
+                        </h3>
+                        <p class="text-green-700">${faculty.email}</p>
+                    </div>
+                ` : ''}
+                ${faculty.officeHours ? `
+                    <div class="bg-blue-50 p-4 rounded-xl">
+                        <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                            <i class="fas fa-clock text-blue-600 ml-2"></i> الساعات المكتبية
+                        </h3>
+                        <p class="text-blue-700">${faculty.officeHours}</p>
+                    </div>
+                ` : ''}
+            </div>
+            
+            ${faculty.specialization ? `
+                <div class="bg-purple-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-purple-800 mb-2 flex items-center">
+                        <i class="fas fa-star text-purple-600 ml-2"></i> التخصص
                     </h3>
-                    <p class="text-blue-700">${faculty.experience}</p>
+                    <p class="text-purple-700">${faculty.specialization}</p>
                 </div>
-                <div class="bg-green-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-green-800 mb-2 flex items-center">
-                        <i class="fas fa-envelope text-green-600 ml-2"></i> البريد الإلكتروني
+            ` : ''}
+            
+            ${faculty.officeNumber ? `
+                <div class="bg-gray-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-map-marker-alt text-gray-600 ml-2"></i> رقم المكتب
                     </h3>
-                    <p class="text-green-700">${faculty.email}</p>
+                    <p class="text-gray-600">${faculty.officeNumber}</p>
                 </div>
-            </div>
+            ` : ''}
             
-            <div class="bg-purple-50 p-4 rounded-xl">
-                <h3 class="font-bold text-purple-800 mb-2 flex items-center">
-                    <i class="fas fa-star text-purple-600 ml-2"></i> التخصص
-                </h3>
-                <p class="text-purple-700">${faculty.specialization}</p>
-            </div>
+            ${faculty.research && faculty.research.length > 0 ? `
+                <div class="bg-yellow-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-yellow-800 mb-3 flex items-center">
+                        <i class="fas fa-microscope text-yellow-600 ml-2"></i> مجالات البحث
+                    </h3>
+                    <ul class="space-y-2">
+                        ${faculty.research.map(field => `
+                            <li class="text-yellow-700 flex items-start">
+                                <i class="fas fa-flask text-yellow-600 ml-2 mt-1 text-sm"></i>
+                                <span>${field}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            ` : ''}
             
-            <div class="bg-yellow-50 p-4 rounded-xl">
-                <h3 class="font-bold text-yellow-800 mb-3 flex items-center">
-                    <i class="fas fa-trophy text-yellow-600 ml-2"></i> الإنجازات والتميز
-                </h3>
-                <ul class="space-y-2">
-                    ${faculty.achievements.map(achievement => `
-                        <li class="text-yellow-700 flex items-start">
-                            <i class="fas fa-medal text-yellow-600 ml-2 mt-1 text-sm"></i>
-                            <span>${achievement}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
+            ${faculty.publications && faculty.publications.length > 0 ? `
+                <div class="bg-indigo-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-indigo-800 mb-3 flex items-center">
+                        <i class="fas fa-scroll text-indigo-600 ml-2"></i> المنشورات البحثية
+                    </h3>
+                    <ul class="space-y-2">
+                        ${faculty.publications.map(pub => `
+                            <li class="text-indigo-700 flex items-center">
+                                <i class="fas fa-file-alt text-indigo-600 ml-2"></i>
+                                <span>${pub}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            ` : ''}
             
-            <div class="bg-indigo-50 p-4 rounded-xl">
-                <h3 class="font-bold text-indigo-800 mb-3 flex items-center">
-                    <i class="fas fa-chalkboard-teacher text-indigo-600 ml-2"></i> المساقات التي يدرسها
-                </h3>
-                <ul class="space-y-2">
-                    ${faculty.courses.map(course => `
-                        <li class="text-indigo-700 flex items-center">
-                            <i class="fas fa-book text-indigo-600 ml-2"></i>
-                            <span>${course}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-xl">
-                <h3 class="font-bold text-gray-800 mb-2 flex items-center">
-                    <i class="fas fa-map-marker-alt text-gray-600 ml-2"></i> مكتب الأستاذ
-                </h3>
-                <p class="text-gray-600">${faculty.office}</p>
-            </div>
+            ${faculty.awards && faculty.awards.length > 0 ? `
+                <div class="bg-yellow-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-yellow-800 mb-3 flex items-center">
+                        <i class="fas fa-trophy text-yellow-600 ml-2"></i> الجوائز والإنجازات
+                    </h3>
+                    <ul class="space-y-2">
+                        ${faculty.awards.map(award => `
+                            <li class="text-yellow-700 flex items-start">
+                                <i class="fas fa-medal text-yellow-600 ml-2 mt-1 text-sm"></i>
+                                <span>${award}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            ` : ''}
         </div>
     `;
+
+    content.innerHTML = modalContent;
 
     modal.classList.remove('hidden');
 }
