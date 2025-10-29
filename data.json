@@ -1219,19 +1219,24 @@
   
   "statistics": [
     {
-      "icon": "fa-graduation-cap",
-      "title": "تعليم متميز",
-      "description": "برامج أكاديمية حديثة تواكب التطور التقني"
+      "title": "طالب وطالبة",
+      "description": "500+",
+      "subtitle": "ملتحقين بالبرامج"
     },
     {
-      "icon": "fa-briefcase",
-      "title": "فرص وظيفية",
-      "description": "خريجون مؤهلون لسوق العمل المحلي والعالمي"
+      "title": "مساق دراسي",
+      "description": "29",
+      "subtitle": "في التخصصين"
     },
     {
-      "icon": "fa-flask",
-      "title": "مختبرات حديثة",
-      "description": "تجهيزات متطورة للتدريب العملي"
+      "title": "عضو هيئة تدريس",
+      "description": "15+",
+      "subtitle": "متخصصين ومؤهلين"
+    },
+    {
+      "title": "مختبر حديث",
+      "description": "8",
+      "subtitle": "بأحدث التجهيزات"
     }
   ],
   "links": {

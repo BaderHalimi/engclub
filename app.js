@@ -84,7 +84,7 @@ function populatePageData() {
     updateStatistics();
 
     // إنشاء قسم الإحصائيات
-    createStatisticsSection();
+    // createStatisticsSection();
 
     // ملء بيانات التخصصات
     populateSpecialties();
@@ -184,7 +184,7 @@ function createSpecialtyCard(specialty) {
     card.innerHTML = `
         <div class="text-center mb-6">
             <div class="text-6xl mb-4 text-${specialty.color}">
-                <i class="${specialty.icon}"></i>
+                <i class="fas ${specialty.icon}"></i>
             </div>
             <h2 class="text-3xl font-bold text-${specialty.color} mb-2">${specialty.name}</h2>
             <div class="flex justify-center items-center space-x-4 space-x-reverse text-sm text-gray-600">
@@ -302,7 +302,7 @@ function createStatisticsSection() {
 
         statCard.innerHTML = `
             <div class="text-4xl text-white mb-4">
-                <i class="${stat.icon}"></i>
+                <i class="fas ${stat.icon}"></i>
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">${stat.title}</h3>
             <p class="text-white opacity-80 text-sm">${stat.description}</p>
