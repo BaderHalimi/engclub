@@ -376,6 +376,57 @@
             0% { transform: translateY(100vh) rotate(0deg); }
             100% { transform: translateY(-100px) rotate(360deg); }
         }
+
+        /* تأثير زجاجي مع إضاءة مائلة على الشعار */
+        .logo-container {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 40%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0.1) 60%,
+                transparent 70%
+            );
+            animation: glassShine 4s infinite;
+        }
+
+        @keyframes glassShine {
+            0% {
+                transform: translate(-100%, -100%) rotate(45deg);
+            }
+            100% {
+                transform: translate(100%, 100%) rotate(45deg);
+            }
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                circle at 30% 30%,
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
         
     </style>
 </head>
@@ -395,9 +446,9 @@
 
     <!-- Header -->
     <header class="relative z-20 flex items-center justify-between p-4 md:px-[10%]">
-        <div class="flex items-center bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl">
-            <img src="imgs/logo.png" class="max-h-[60px]" alt="ucas eng club">
-            <div class="mr-4">
+        <div class="logo-container flex items-center p-4 rounded-xl">
+            <img src="imgs/logo.png" class="max-h-[60px] relative z-10" alt="ucas eng club">
+            <div class="mr-4 relative z-10">
                 <h1 class="font-bold text-lg text-white">النـادي الهندســي</h1>
                 <p class="text-white opacity-80">مساحة الابداع والتميز</p>
             </div>
