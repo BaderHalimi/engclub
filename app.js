@@ -239,6 +239,7 @@ function populateFaculty() {
     // ملء بيانات رئيس القسم
     const headSection = document.querySelector('.mb-12 .flex.justify-center.head');
     if (headSection && siteData.faculty.head) {
+        siteData.faculty.head.id = 'head'; // إضافة الـ id لرئيس القسم
         const headCard = createFacultyCard(siteData.faculty.head, true);
         headSection.innerHTML = '';
         headSection.appendChild(headCard);
@@ -250,8 +251,9 @@ function populateFaculty() {
         facultyGrid.innerHTML = '';
 
         // إضافة جميع أعضاء هيئة التدريس عدا رئيس القسم
-        Object.values(siteData.faculty).forEach(faculty => {
-            if (faculty.id !== 'head') {
+        Object.entries(siteData.faculty).forEach(([id, faculty]) => {
+            if (id !== 'head') {
+                faculty.id = id; // إضافة الـ id للعضو
                 const facultyCard = createFacultyCard(faculty, false);
                 facultyGrid.appendChild(facultyCard);
             }
@@ -332,8 +334,15 @@ function createStatisticsSection() {
 // دالة إنشاء بطاقة عضو هيئة التدريس
 function createFacultyCard(faculty, isHead = false) {
     const card = document.createElement('div');
-    card.className = `faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 relative overflow-hidden cursor-pointer ${isHead ? 'max-w-md mx-auto' : ''}`;
-    card.onclick = () => showFacultyDetails(faculty.id);
+    
+    // إضافة cursor-pointer فقط إذا لم يكن معطلاً
+    const cursorClass = faculty.disabled ? '' : 'cursor-pointer';
+    card.className = `faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 relative overflow-hidden ${cursorClass} ${isHead ? 'max-w-md mx-auto' : ''}`;
+    
+    // إضافة onclick فقط إذا لم يكن معطلاً
+    if (!faculty.disabled) {
+        card.onclick = () => showFacultyDetails(faculty.id);
+    }
 
     // عرض الصورة إذا كانت متوفرة، وإلا استخدام الأيقونة
     const imageHTML = faculty.image ? `
@@ -597,6 +606,12 @@ function showFacultyDetails(facultyId) {
     let faculty;
     if (siteData.faculty[facultyId]) {
         faculty = siteData.faculty[facultyId];
+        
+        // التحقق إذا كان العضو معطل (disabled)
+        if (faculty.disabled) {
+            console.log('هذا العضو غير متاح للعرض');
+            return;
+        }
     } else {
         // البحث في مصفوفة الأعضاء
         faculty = Object.values(siteData.faculty).find(f => f.id === facultyId);
