@@ -60,3 +60,46 @@ root{
 @media (prefers-reduced-motion: reduce){
   .tech-circuit { animation: none; }
 }
+
+/* تحسينات لعرض بطاقات الكادر */
+.faculty-card {
+  transition: all 0.3s ease;
+}
+
+.faculty-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* تحسين عرض النصوص الطويلة في المودال */
+.whitespace-pre-line {
+  white-space: pre-line;
+}
+
+/* تحسين الصور في البطاقات */
+.faculty-card img {
+  transition: all 0.3s ease;
+}
+
+.faculty-card:hover img {
+  transform: scale(1.05);
+}
+
+/* تحسين الحدود والظلال */
+.border-r-4 {
+  border-right-width: 4px;
+}
+
+/* تحسين التباعد للنصوص */
+.leading-relaxed {
+  line-height: 1.75;
+}
+
+/* تأثيرات إضافية للأيقونات */
+.faculty-card i {
+  transition: all 0.3s ease;
+}
+
+.faculty-card:hover i {
+  transform: scale(1.1);
+}

@@ -335,15 +335,32 @@ function createFacultyCard(faculty, isHead = false) {
     card.className = `faculty-card bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white border-opacity-50 relative overflow-hidden cursor-pointer ${isHead ? 'max-w-md mx-auto' : ''}`;
     card.onclick = () => showFacultyDetails(faculty.id);
 
+    // عرض الصورة إذا كانت متوفرة، وإلا استخدام الأيقونة
+    const imageHTML = faculty.image ? `
+        <img src="${faculty.image}" alt="${faculty.name}" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="w-full h-full rounded-full bg-gray-200 items-center justify-center hidden">
+            <i class="fas fa-user text-2xl text-gray-600"></i>
+        </div>
+    ` : `
+        <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+            <i class="fas fa-user text-2xl text-gray-600"></i>
+        </div>
+    `;
+
     x = `
         <div class="text-center">
-            <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient} p-1 mb-4">
-                <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
-                    <i class="fas fa-user text-2xl text-gray-600"></i>
-                </div>
+            <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient} p-1 mb-4 shadow-lg">
+                ${imageHTML}
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-1">${faculty.name}</h3>
             <p class="text-sm text-blue-600 font-medium mb-2">${faculty.position}</p>
+            
+            ${faculty.qualification ? `
+                <div class="inline-flex items-center bg-gradient-to-r ${faculty.gradient} text-white px-3 py-1 rounded-full text-xs mb-3">
+                    <i class="fas fa-graduation-cap ml-1"></i>
+                    ${faculty.qualification}
+                </div>
+            ` : ''}
             
             ${faculty.badge ? `
                 <div class="inline-flex items-center bg-gradient-to-r ${faculty.gradient} text-white px-3 py-1 rounded-full text-xs mb-3">
@@ -357,7 +374,7 @@ function createFacultyCard(faculty, isHead = false) {
     if (isHead) {
         x = x + `<p class="text-xs text-gray-600 flex items-center justify-center mb-1">
                     <i class="fas fa-graduation-cap text-blue-500 ml-1"></i>
-                    ${faculty.experience} خبرة
+                    ${faculty.experience}
                 </p>`
     }
     x = x + `
@@ -592,19 +609,73 @@ function showFacultyDetails(facultyId) {
         return;
     }
 
+    // تحضير الصورة
+    const imageHTML = faculty.image ? `
+        <img src="${faculty.image}" alt="${faculty.name}" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="w-full h-full rounded-full bg-gray-200 items-center justify-center hidden">
+            <i class="fas fa-user text-5xl text-gray-600"></i>
+        </div>
+    ` : `
+        <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
+            <i class="fas fa-user text-5xl text-gray-600"></i>
+        </div>
+    `;
+
     // تحضير محتوى الـ modal
     let modalContent = `
         <div class="text-center mb-6">
-            <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient || 'from-blue-500 to-blue-700'} p-2 mb-4">
-                <div class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center">
-                    <i class="fas fa-user text-5xl text-gray-600"></i>
-                </div>
+            <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br ${faculty.gradient || 'from-blue-500 to-blue-700'} p-2 mb-4 shadow-xl">
+                ${imageHTML}
             </div>
             <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name || 'غير محدد'}</h2>
-            <p class="text-lg text-blue-600 font-medium">${faculty.position || 'غير محدد'}</p>
+            <p class="text-lg text-blue-600 font-medium mb-2">${faculty.position || 'غير محدد'}</p>
+            ${faculty.qualification ? `
+                <div class="inline-flex items-center bg-gradient-to-r ${faculty.gradient || 'from-blue-500 to-blue-700'} text-white px-4 py-1 rounded-full text-sm">
+                    <i class="fas fa-graduation-cap ml-2"></i>
+                    ${faculty.qualification}
+                </div>
+            ` : ''}
         </div>
         
         <div class="space-y-6">
+            <!-- البريد الإلكتروني والتخصص في الأعلى جنباً إلى جنب -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                ${faculty.email ? `
+                    <div class="bg-green-50 p-4 rounded-xl">
+                        <h3 class="font-bold text-green-800 mb-2 flex items-center">
+                            <i class="fas fa-envelope text-green-600 ml-2"></i> البريد الإلكتروني
+                        </h3>
+                        <a href="mailto:${faculty.email}" class="text-green-700 text-sm break-all hover:text-green-900 hover:underline transition-colors duration-200">${faculty.email}</a>
+                    </div>
+                ` : ''}
+                ${faculty.specialization ? `
+                    <div class="bg-purple-50 p-4 rounded-xl">
+                        <h3 class="font-bold text-purple-800 mb-2 flex items-center">
+                            <i class="fas fa-star text-purple-600 ml-2"></i> التخصص
+                        </h3>
+                        <p class="text-purple-700">${faculty.specialization}</p>
+                    </div>
+                ` : ''}
+            </div>
+            
+            ${faculty.bio ? `
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-5 rounded-xl border-r-4 border-blue-500">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center text-lg">
+                        <i class="fas fa-user-circle text-blue-600 ml-2"></i> نبذة تعريفية
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed whitespace-pre-line">${faculty.bio}</p>
+                </div>
+            ` : ''}
+            
+            ${faculty.message ? `
+                <div class="bg-gradient-to-r from-green-50 to-teal-50 p-5 rounded-xl border-r-4 border-green-500">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center text-lg">
+                        <i class="fas fa-comment-dots text-green-600 ml-2"></i> كلمة موجهة للطلبة
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed whitespace-pre-line italic">${faculty.message}</p>
+                </div>
+            ` : ''}
+            
             ${faculty.degree ? `
                 <div class="bg-gray-50 p-4 rounded-xl">
                     <h3 class="font-bold text-gray-800 mb-2 flex items-center">
@@ -614,31 +685,12 @@ function showFacultyDetails(facultyId) {
                 </div>
             ` : ''}
             
-            <div class="grid md:grid-cols-2 gap-4">
-                ${faculty.email ? `
-                    <div class="bg-green-50 p-4 rounded-xl">
-                        <h3 class="font-bold text-green-800 mb-2 flex items-center">
-                            <i class="fas fa-envelope text-green-600 ml-2"></i> البريد الإلكتروني
-                        </h3>
-                        <p class="text-green-700">${faculty.email}</p>
-                    </div>
-                ` : ''}
-                ${faculty.officeHours ? `
-                    <div class="bg-blue-50 p-4 rounded-xl">
-                        <h3 class="font-bold text-blue-800 mb-2 flex items-center">
-                            <i class="fas fa-clock text-blue-600 ml-2"></i> الساعات المكتبية
-                        </h3>
-                        <p class="text-blue-700">${faculty.officeHours}</p>
-                    </div>
-                ` : ''}
-            </div>
-            
-            ${faculty.specialization ? `
-                <div class="bg-purple-50 p-4 rounded-xl">
-                    <h3 class="font-bold text-purple-800 mb-2 flex items-center">
-                        <i class="fas fa-star text-purple-600 ml-2"></i> التخصص
+            ${faculty.officeHours ? `
+                <div class="bg-blue-50 p-4 rounded-xl">
+                    <h3 class="font-bold text-blue-800 mb-2 flex items-center">
+                        <i class="fas fa-clock text-blue-600 ml-2"></i> الساعات المكتبية
                     </h3>
-                    <p class="text-purple-700">${faculty.specialization}</p>
+                    <p class="text-blue-700">${faculty.officeHours}</p>
                 </div>
             ` : ''}
             
