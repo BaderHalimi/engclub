@@ -672,7 +672,7 @@ function showFacultyDetails(facultyId) {
                     <h3 class="font-bold text-gray-800 mb-3 flex items-center text-lg">
                         <i class="fas fa-comment-dots text-green-600 ml-2"></i> كلمة موجهة للطلبة
                     </h3>
-                    <p class="text-gray-700 leading-relaxed whitespace-pre-line italic">${faculty.message}</p>
+                    <p class="text-gray-700 leading-relaxed whitespace-pre-line">${faculty.message}</p>
                 </div>
             ` : ''}
             
