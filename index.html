@@ -72,6 +72,84 @@
         * {
             font-family: 'Noto Sans Arabic', 'Inter', sans-serif !important;
         }
+
+        /* Floating Links Button */
+        .floating-links-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+            background: linear-gradient(135deg, #1D4ED8, #8B5CF6);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .floating-links-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .floating-links-btn i {
+            font-size: 24px;
+        }
+
+        .links-modal {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 998;
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .links-modal.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .links-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            color: #374151;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .link-item:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+
+        .link-item i {
+            margin-left: 12px;
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
         
         /* Custom scrollbar */
         body::-webkit-scrollbar {
@@ -1050,6 +1128,46 @@
 
     </div>
 
+    <!-- Floating Links Button -->
+    <div class="floating-links-btn" onclick="toggleLinksModal()">
+        <i class="fas fa-link"></i>
+    </div>
+
+    <!-- Links Modal -->
+    <div id="linksModal" class="links-modal">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">روابط مهمة</h3>
+        <div class="links-grid">
+            <a href="https://chat.whatsapp.com/L88tgjLg9rG9SCCmde4Swv" target="_blank" class="link-item">
+                <i class="fab fa-whatsapp text-green-600"></i>
+                جروب الطلبة الجدد
+            </a>
+            <a href="https://chat.whatsapp.com/GJu3SvHnRFqDNBgRg9ReSQ" target="_blank" class="link-item">
+                <i class="fab fa-whatsapp text-green-600"></i>
+                قروب الدورات والفعاليات
+            </a>
+            <a href="https://chat.whatsapp.com/LfUWGRj7FGt8asRhBUiMMd" target="_blank" class="link-item">
+                <i class="fab fa-whatsapp text-green-600"></i>
+                قروب الفرص والتدريب
+            </a>
+            <a href="https://t.me/UCASEngineering" target="_blank" class="link-item">
+                <i class="fab fa-telegram text-blue-500"></i>
+                قناة تليجرام القسم
+            </a>
+            <a href="https://t.me/+AtsPxTNx3YEwMjY8" target="_blank" class="link-item">
+                <i class="fab fa-telegram text-blue-500"></i>
+                قروب تليجرام القسم
+            </a>
+            <a href="https://www.facebook.com/UCASEngClub" target="_blank" class="link-item">
+                <i class="fab fa-facebook text-blue-600"></i>
+                صفحة النادي الهندسي
+            </a>
+            <a href="https://instagram.com/ucaseng" target="_blank" class="link-item">
+                <i class="fab fa-instagram text-pink-600"></i>
+                حساب انستجرام
+            </a>
+        </div>
+    </div>
+
     <!-- Modal لتفاصيل أعضاء هيئة التدريس -->
     <div id="facultyModal" class="fixed inset-0 z-50 hidden modal-overlay">
         <div class="flex items-center justify-center min-h-screen p-4">
@@ -1129,6 +1247,23 @@
     </div>
     <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+    
+    <script>
+        // Toggle Links Modal
+        function toggleLinksModal() {
+            const modal = document.getElementById('linksModal');
+            modal.classList.toggle('active');
+        }
+
+        // Close Links Modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('linksModal');
+            const btn = document.querySelector('.floating-links-btn');
+            if (!modal.contains(event.target) && !btn.contains(event.target)) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
