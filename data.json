@@ -1165,30 +1165,30 @@
       "gradient": "from-yellow-500 to-yellow-600"
     },
     "dr_marwan": {
-      "name": "د. مروان راضي",
-      "position": "مدرس تخصص الذكاء الاصطناعي",
+      "name": "د. مروان حسن راضي",
+      "position": "أستاذ مساعد",
       "email": "mhradi@ucas.edu.ps",
-      "specialization": "الذكاء الاصطناعي",
+      "specialization": "هندسة الميكاترونكس",
       "qualification": "دكتوراه",
       "education": "",
       "image": "",
       "bio": "",
       "message": "",
       "gradient": "from-indigo-500 to-purple-600",
-      "badge": "مدرس في تخصص الذكاء الاصطناعي"
+      "badge": "أستاذ مساعد - هندسة الميكاترونكس"
     },
     "dr_talmas": {
       "name": "د. طارق التلمس",
-      "position": "مدرس تخصص الذكاء الاصطناعي",
+      "position": "أستاذ مساعد",
       "email": "taltalmas@ucas.edu.ps",
-      "specialization": "الذكاء الاصطناعي",
+      "specialization": "هندسة الأنظمة الذكية",
       "qualification": "دكتوراه",
       "education": "",
       "image": "",
       "bio": "",
       "message": "",
       "gradient": "from-teal-500 to-cyan-600",
-      "badge": "مدرس في تخصص الذكاء الاصطناعي"
+      "badge": "أستاذ مساعد - هندسة الأنظمة الذكية"
     },
     "dr_abukamil": {
       "name": "د. مهند أبو كميل",
