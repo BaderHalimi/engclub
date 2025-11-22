@@ -25,6 +25,12 @@ async function loadData() {
         // ملء البيانات في الصفحة
         populatePageData();
 
+        // بعد ملء البيانات، إخفاء اللودر وإظهار المحتوى الرئيسي
+        const loader = document.getElementById('loader');
+        const mainContent = document.getElementById('main-content');
+        if (loader) loader.style.display = 'none';
+        if (mainContent) mainContent.style.display = '';
+
         return true;
     } catch (error) {
         console.error('❌ خطأ في تحميل البيانات:', error);

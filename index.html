@@ -589,8 +589,15 @@
         <div id="progressBar" class="progress-bar w-0"></div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
-    <div class="relative z-10 max-w-6xl mx-auto px-4 py-8">
+        <!-- Loader Overlay -->
+        <div id="loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <i class="fas fa-spinner fa-spin fa-3x text-cyber-purple mb-4"></i>
+                <span class="text-xl text-cyber-purple font-bold">جاري تحميل البيانات...</span>
+            </div>
+        </div>
+        <!-- المحتوى الرئيسي -->
+        <div id="main-content" class="relative z-10 max-w-6xl mx-auto px-4 py-8" style="display:none;">
 
         <!-- مقدمة الرحلة -->
         <section class="text-center mb-16 reveal-animation">
