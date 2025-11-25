@@ -368,7 +368,7 @@ function createFacultyCard(faculty, isHead = false) {
                 ${imageHTML}
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-1">${faculty.name}</h3>
-            <p class="text-sm text-blue-600 font-medium mb-2">${faculty.position}</p>
+            <p class="text-sm text-blue-600 font-medium mb-2">${faculty.position?faculty.position:''}</p>
             
             ${faculty.qualification ? `
                 <div class="inline-flex items-center bg-gradient-to-r ${faculty.gradient} text-white px-3 py-1 rounded-full text-xs mb-3">

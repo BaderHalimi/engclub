@@ -1119,7 +1119,6 @@
     "dr_tahrawi": {
       "id": "dr_tahrawi",
       "name": "د. محمد الطهراوي",
-      "position": "أستاذ مساعد - علوم البيانات والذكاء الاصطناعي",
       "roles": [
         "منسق تخصص علم البيانات والذكاء الاصطناعي",
         "مسؤول ملف المعادلات لتخصص الذكاء الاصطناعي"
@@ -1136,7 +1135,6 @@
     "dr_sayegh": {
       "id": "dr_sayegh",
       "name": "د. سناء وفا توفيق الصايغ",
-      "position": "أستاذ مساعد ومرشد أكاديمي",
       "education": "دكتوراه في علوم الحاسوب - الذكاء الاصطناعي - جامعة بغداد، 2003",
       "specialization": "علم الحاسوب - ذكاء اصطناعي - الشبكات العصيبية  -معالجة الوسائط المتعددة وتمييز الأنماط وتمييز الصوتيات العربية باستخدام الحاسوب",
       "email": "ssayegh@ucas.edu.ps",
@@ -1152,7 +1150,6 @@
       "id": "new_2",
       "name": "د. محمد حاتم محمد مشتهى",
       "badge": "محاضر",
-      "position": "دكتور",
       "qualification": "دكتوراه",
       "specialization": "هندسة الكهرباء",
       "email": "mmushtaha@ucas.edu.ps",
@@ -1163,7 +1160,6 @@
     },
     "dr_marwan": {
       "name": "د. مروان حسن راضي",
-      "position": "أستاذ مساعد",
       "email": "mhradi@ucas.edu.ps",
       "specialization": "هندسة الميكاترونكس",
       "qualification": "دكتوراه",
@@ -1176,7 +1172,6 @@
     },
     "dr_talmas": {
       "name": "د. طارق التلمس",
-      "position": "أستاذ مساعد",
       "email": "taltalmas@ucas.edu.ps",
       "specialization": "هندسة الأنظمة الذكية",
       "qualification": "دكتوراه",
@@ -1189,7 +1184,6 @@
     },
     "dr_abukamil": {
       "name": "د. مهند أبو كميل",
-      "position": "مدرس تخصص الذكاء الاصطناعي",
       "email": "makmeil@ucas.edu.ps",
       "specialization": "الذكاء الاصطناعي",
       "qualification": "دكتوراه",
@@ -1202,7 +1196,6 @@
     },
     "dr_farwana": {
       "name": "د. اسراء فروانة",
-      "position": "مدرس تخصص الذكاء الاصطناعي",
       "email": "ifarwanah@ucas.edu.ps",
       "specialization": "الذكاء الاصطناعي",
       "qualification": "دكتوراه",
@@ -1215,7 +1208,6 @@
     },
     "dr_abufoul": {
       "name": "د. محمد أبو فول",
-      "position": "مدرس تخصص الذكاء الاصطناعي",
       "email": "mabufoul@ucas.edu.ps",
       "specialization": "الذكاء الاصطناعي",
       "qualification": "دكتوراه",
@@ -1228,7 +1220,6 @@
     },
     "dr_sheikhali": {
       "name": "د. محمد الشيخ علي",
-      "position": "مدرس تخصص الذكاء الاصطناعي",
       "email": "malsheakhali@ucas.edu.ps",
       "specialization": "الذكاء الاصطناعي",
       "qualification": "دكتوراه",
@@ -1242,7 +1233,6 @@
     "new_1": {
       "id": "new_1",
       "name": "م. ابراهيم غسان ابراهيم المسحال",
-      "position": "محاضر",
       "qualification": "ماجستير",
       "specialization": "الهندسة المدنية",
       "email": "imeshal@ucas.edu.ps",
@@ -1254,7 +1244,6 @@
     "new_9": {
       "id": "new_9",
       "name": "م. عودة محمد عودة الشكري",
-      "position": "محاضر",
       "qualification": "ماجستير",
       "specialization": "هندسة كهربائية",
       "email": "ashokry@ucas.edu.ps",
@@ -1267,7 +1256,6 @@
     "new_6": {
       "id": "new_6",
       "name": "م. سامية محمود عبد الرحمن حسونة",
-      "position": "محاضر",
       "qualification": "ماجستير",
       "specialization": "هندسة حاسوب",
       "email": "shassouna5@smail.ucas.edu.ps",
@@ -1280,7 +1268,6 @@
     "eng_salem": {
       "id": "eng_salem",
       "name": "م. سامح عوني سالم",
-      "position": "محاضر ومرشد أكاديمي",
       "education": "ماجستير في علوم الحاسوب",
       "specialization": "هندسة أمن المعلومات",
       "email": "sasalem@ucas.edu.ps",
@@ -1295,7 +1282,6 @@
     "new_3": {
       "id": "new_3",
       "name": "م. عيد عدنان عيد الاغا",
-      "position": "مدرس مساعد",
       "qualification": "بكالوريوس",
       "specialization": "هندسة حاسوب",
       "email": "eagha@ucas.edu.ps",
@@ -1307,7 +1293,6 @@
     "eng_shorbaji": {
       "id": "eng_shorbaji",
       "name": "م. محمد الشوربجي",
-      "position": "محاضر - أمن المعلومات",
       "roles": [
         "منسق تخصص هندسة أمن المعلومات السيبراني",
         "مسؤول معادلات تخصص الأمن السيبراني (طلاب)"
@@ -1324,7 +1309,6 @@
     "eng_sumairi": {
       "id": "eng_sumairi",
       "name": "م. حسن السميري",
-      "position": "محاضر - شبكات الحاسوب",
       "roles": [
         "منسق تخصص دبلوم شبكات الحاسوب والإنترنت"
       ],
@@ -1340,7 +1324,6 @@
     "eng_sheikh": {
       "id": "eng_sheikh",
       "name": "م. محمود الشيخ خليل",
-      "position": "محاضر - أمن المعلومات",
       "roles": [
         "منسق تخصص دبلوم أمن المعلومات"
       ],
@@ -1356,7 +1339,6 @@
     "eng_yazouri": {
       "id": "eng_yazouri",
       "name": "م. تامر اليازوري",
-      "position": "محاضر ومرشد أكاديمي",
       "roles": [
         "مرشد أكاديمي",
         "مشرف التدريب الميداني",
@@ -1376,7 +1358,6 @@
     "new_7": {
       "id": "new_7",
       "name": "م. نور علاء احمد نشوان",
-      "position": "مدرس مساعد",
       "qualification": "بكالوريوس",
       "specialization": "هندسة أمن معلومات السيراني",
       "email": "nnashwan@ucas.edu.ps",
@@ -1388,7 +1369,6 @@
     "new_10": {
       "id": "new_10",
       "name": "م. يمنى عمرو يحيى الفرا",
-      "position": "مدرس مساعد",
       "qualification": "بكالوريوس",
       "specialization": "هندسة برمجيات",
       "email": "yalfarra@ucas.edu.ps",
@@ -1400,7 +1380,6 @@
     "new_11": {
       "id": "new_11",
       "name": "م. عبدالرحمن حمدي سلمان معمر",
-      "position": "مدرس مساعد",
       "qualification": "بكالوريوس",
       "specialization": "هندسة أمن المعلومات المحوسبة",
       "email": "amuammer@ucas.edu.ps",
@@ -1412,7 +1391,6 @@
     "eng_dalloul": {
       "id": "eng_dalloul",
       "name": "م. رواء عادل حسن دلول",
-      "position": "مدرس مساعد",
       "qualification": "بكالوريوس",
       "specialization": "هندسة أمن المعلومات المحوسبة",
       "email": "radalloul@ucas.edu.ps",
