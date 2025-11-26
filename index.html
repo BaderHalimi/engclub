@@ -589,15 +589,16 @@
         <div id="progressBar" class="progress-bar w-0"></div>
     </div>
 
-        <!-- Loader Overlay -->
-        <div id="loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;">
-            <div style="display:flex;flex-direction:column;align-items:center;">
-                <i class="fas fa-spinner fa-spin fa-3x text-cyber-purple mb-4"></i>
-                <span class="text-xl text-cyber-purple font-bold">جاري تحميل البيانات...</span>
-            </div>
+    <!-- Loader Overlay -->
+    <div id="loader"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;">
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <i class="fas fa-spinner fa-spin fa-3x text-cyber-purple mb-4"></i>
+            <span class="text-xl text-cyber-purple font-bold">جاري تحميل البيانات...</span>
         </div>
-        <!-- المحتوى الرئيسي -->
-        <div id="main-content" class="relative z-10 max-w-6xl mx-auto px-4 py-8" style="display:none;">
+    </div>
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content" class="relative z-10 max-w-6xl mx-auto px-4 py-8" style="display:none;">
 
         <!-- مقدمة الرحلة -->
         <section class="text-center mb-16 reveal-animation">
@@ -882,6 +883,89 @@
                                 <span class="ml-2">استكشف التخصص</span>
                                 <i class="fas fa-search transform group-hover:scale-110 transition-transform"></i>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 reveal-animation">
+            <h2 class="text-4xl font-bold text-white text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-users text-5xl ml-4"></i> شهداء الكادر التعليمي
+            </h2>
+
+            <div class="mb-12">
+                
+                <div class="flex grid-cols-3 justify-center gap-8">
+                    
+                    <!-- بطاقة الشهيد 2 -->
+                    <div class="relative overflow-hidden bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white border-opacity-50 w-full cursor-pointer martyr-card" onclick="showMartyrModal('martyr_salah')">
+                        <div class="absolute top-[27px] right-[3px] bg-black text-white py-2 px-6 transform rotate-45 translate-x-8 -translate-y-4 shadow-lg text-xs font-bold" style="z-index:10;">شهيد القسم</div>
+                        <div class="text-center">
+                            <div class="relative mb-6">
+                                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-gray-700 to-black p-1">
+                                    <div class="w-full h-full overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+                                        <img src="imgs/m-salah.jpeg" alt="eng.mohammed salah">
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">م. محمد صلاح</h3>
+                            <p class="text-gray-600 mb-4">ماجستير في الهندسة الكهربائية</p>
+                            <!-- <div class="flex justify-center space-x-2 space-x-reverse">
+                                <span class="bg-black text-white px-3 py-1 rounded-full text-sm">شهيد القسم</span>
+                            </div> -->
+                            <div class="mt-4 text-center">
+                                <button class="bg-gray-800 text-white px-4 py-2 rounded-full inline-flex items-center text-sm hover:bg-black martyr-details-btn" onclick="event.stopPropagation();showMartyrModal('martyr_salah')">
+                                    <span class="ml-2">التفاصيل</span>
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- بطاقة الشهيد 1 -->
+                    <div class="relative overflow-hidden bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white border-opacity-50 w-full cursor-pointer martyr-card" onclick="showMartyrModal('martyr_zebda')">
+                        <!-- شريط شهيد -->
+                        <div class="absolute top-[27px] right-[3px] bg-black text-white py-2 px-6 transform rotate-45 translate-x-8 -translate-y-4 shadow-lg text-xs font-bold" style="z-index:10;">شهيد القسم</div>
+                        <div class="text-center">
+                            <div class="relative mb-6">
+                                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-gray-700 to-black p-1">
+                                    <div class="w-full h-full overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+                                        <img src="imgs/s-zebda.jpeg" alt="dr.said alzebda">
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">د. سعيد الزبدة</h3>
+                            <p class="text-gray-600 mb-4">دكتوراه في الهندسة الكهربائية والإلكترونية والاتصالات</p>
+                            <!-- <div class="flex justify-center space-x-2 space-x-reverse">
+                                <span class="bg-black text-white px-3 py-1 rounded-full text-sm">شهيد القسم</span>
+                            </div> -->
+                            <div class="mt-4 text-center">
+                                <button class="bg-gray-800 text-white px-4 py-2 rounded-full inline-flex items-center text-sm hover:bg-black martyr-details-btn" onclick="event.stopPropagation();showMartyrModal('martyr_zebda')">
+                                    <span class="ml-2">التفاصيل</span>
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- بطاقة الشهيد 3 -->
+                    <div class="relative overflow-hidden bg-white bg-opacity-95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white border-opacity-50 w-full cursor-pointer martyr-card" onclick="showMartyrModal('martyr_abuneama')">
+                        <div class="absolute top-[27px] right-[3px] bg-black text-white py-2 px-6 transform rotate-45 translate-x-8 -translate-y-4 shadow-lg text-xs font-bold" style="z-index:10;">شهيد القسم</div>
+                        <div class="text-center">
+                            <div class="relative mb-6">
+                                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-gray-700 to-black p-1">
+                                    <div class="w-full h-full overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+                                        <img src="imgs/j-neama.jpeg" alt="eng.jihad abuneama">
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">م. جهاد أبو نعمة</h3>
+                                <p class="text-gray-600 mb-4">بكالوريوس هندسة امن معلومات محوسبة</p>
+                                <div class="mt-4 text-center">
+                                    <button class="bg-gray-800 text-white px-4 py-2 rounded-full inline-flex items-center text-sm hover:bg-black martyr-details-btn" onclick="event.stopPropagation();showMartyrModal('martyr_abuneama')">
+                                        <span class="ml-2">التفاصيل</span>
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -1263,7 +1347,7 @@
     <div id="linksModal" class="links-modal">
         <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">روابط مهمة</h3>
         <div class="links-grid">
-            
+
             <a href="https://chat.whatsapp.com/FD0aamWLP5Y51xaFxnVuhQ?mode=wwt" target="_blank" class="link-item">
                 <i class="fab fa-whatsapp text-green-600"></i>
                 &ThickSpace; مجتمع النادي الهندسي
@@ -1363,6 +1447,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal شهداء الكادر التعليمي -->
+    <div id="martyrModal" class="fixed inset-0 z-50 hidden modal-overlay">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-3xl modal-content">
+                <div class="modal-header">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl font-bold text-gray-800">نبذة عن الشهيد</h2>
+                        <button onclick="closeMartyrModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="martyrModalContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button onclick="closeMartyrModal()"
+                            class="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600 transition-colors">
+                            إغلاق
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
 
@@ -1381,6 +1492,169 @@
                 modal.classList.remove('active');
             }
         });
+
+        // Modal شهداء الكادر التعليمي
+        function showMartyrModal(martyrId) {
+            const modal = document.getElementById('martyrModal');
+            const content = document.getElementById('martyrModalContent');
+            let html = '';
+            if (martyrId === 'martyr_zebda') {
+                html = `
+                    <div class="relative text-center py-6 px-2">
+                        <div class='absolute top-0 left-0 w-full h-12 bg-black rounded-t-3xl flex items-center justify-center text-white font-bold text-lg tracking-wide'>شهيد القسم</div>
+                        <div class="mb-6 mt-10 flex justify-center">
+                            <div class="w-32 h-32 overflow-hidden rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center mx-auto border-4 border-black shadow-lg">
+                                <img src="imgs/s-zebda.jpeg" style="width:100%;" />
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-gray-900 mb-2">د. سعيد الزبدة</h3>
+                        <div class="bg-black text-white rounded-full px-4 py-1 mb-4 inline-block font-bold">رحلة حياة أوقفها العدوان</div>
+                        <p class="text-gray-700 mb-2 font-semibold">رئيس الكلية الجامعية للعلوم التطبيقية، غزة، فلسطين</p>
+                        <div class="bg-gray-100 rounded-xl p-4 my-4 shadow text-right">
+                            <p class="text-gray-800 text-md mb-2">محاضر في جامعة يوكاس (٢٠٠٢ - ٢٠٢٣)</p>
+                            <p class="text-gray-800 text-md mb-2">مدير حاضنة يوكاس التكنولوجية (٢٠١١ - ٢٠٢٣)</p>
+                            <p class="text-gray-800 text-md mb-2">مستشار تطوير أعمال في مكتب رئيس الجامعة (٢٠١٣ - ٢٠٢٣)</p>
+                            <p class="text-gray-800 text-md mb-2">مستشار فني في منظمتي أكتد ومعًا (٢٠١٩ - ٢٠٢٣)</p>
+                            <p class="text-gray-800 text-md mb-2">رئيس لجنة التوظيف وريادة الأعمال - مركز تدريب الشباب الفلسطيني (٢٠١٩ - ٢٠٢٣)</p>
+                            <p class="text-gray-800 text-md mb-2">عضو اللجنة الفنية - برنامج الشباب الفلسطيني الماهر (٢٠٢٠ - ٢٠٢٣)</p>
+                            <p class="text-gray-800 text-md mb-2">مطور قواعد بيانات في إحدى الشركات (٢٠٠٣ - ٢٠٠٦)</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                            <div class="bg-gradient-to-br from-cyber-purple to-blue-500 rounded-xl shadow-lg p-6 border-0 text-white flex flex-col items-start">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-graduation-cap text-3xl ml-3"></i>
+                                    <span class="font-bold text-xl">المؤهلات الأكاديمية</span>
+                                </div>
+                                <ul class="text-md space-y-3 text-right w-full">
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> دكتوراه في الهندسة الكهربائية والإلكترونية والاتصالات - جامعة نوتنغهام (٢٠٠٧-٢٠١١)</li>
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> ماجستير في الهندسة الكهربائية والإلكترونية والاتصالات - جامعة نوتنغهام (٢٠٠٦-٢٠٠٧)</li>
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> ماجستير في الاتصالات الإلكترونية (الموجات فوق الصوتية لاختبارات عدم التدمير في صناعة الأغذية)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gradient-to-br from-orange-500 to-pink-500 rounded-xl shadow-lg p-6 border-0 text-white flex flex-col items-start">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-briefcase text-3xl ml-3"></i>
+                                    <span class="font-bold text-xl">المسيرة المهنية</span>
+                                </div>
+                                <ul class="text-md space-y-3 text-right w-full">
+                                    <li class="flex items-center"><i class="fas fa-user-tie text-white ml-2"></i> رئيس الكلية الجامعية للعلوم التطبيقية (يونيو ٢٠٢١ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-project-diagram text-white ml-2"></i> مدير مشروع - إدارة برنامج بناء قدرات للشباب في مجال التعهيد والعمل الحر (أكتوبر ٢٠١٩ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-business-time text-white ml-2"></i> مساعد رئيس الجامعة لتطوير الأعمال (يناير ٢٠١٣ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-chalkboard-teacher text-white ml-2"></i> أستاذ مساعد (فبراير ٢٠٠٣ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-lightbulb text-white ml-2"></i> مدير حاضنة يوكاس التكنولوجية (يناير ٢٠١١ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-project-diagram text-white ml-2"></i> مدير مشروع تمكين الشباب (أكتوبر ٢٠٢٠ - يونيو ٢٠٢١)</li>
+                                    <li class="flex items-center"><i class="fas fa-users text-white ml-2"></i> رئيس لجنة التشغيل وريادة الأعمال (نوفمبر ٢٠١٩ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-users-cog text-white ml-2"></i> عضو اللجنة الفنية - برنامج الشباب الفلسطيني الماهر (مايو ٢٠٢٠ - ٢٠٢٣)</li>
+                                    <li class="flex items-center"><i class="fas fa-hands-helping text-white ml-2"></i> مستشار فني في ACTED (يونيو ٢٠١٩ - ٢٠٢٣)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-gray-700 text-md">
+                            <span class="font-bold text-red-700">قتلتها آلة الحرب الإجرامية</span><br>
+                            <span>رحل تاركاً إرثاً علمياً وإنسانياً كبيراً في قلوب طلبته وزملائه.</span>
+                        </div>
+                    </div>
+                `;
+            } else if (martyrId === 'martyr_salah') {
+                html = `
+                    <div class="relative text-center py-6 px-2">
+                        <div class='absolute top-0 left-0 w-full h-12 bg-black rounded-t-3xl flex items-center justify-center text-white font-bold text-lg tracking-wide'>شهيد القسم</div>
+                        <div class="mb-6 mt-10 flex justify-center">
+                            <div class="w-32 h-32 overflow-hidden rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center mx-auto border-4 border-black shadow-lg">
+                                <img src="imgs/m-salah.jpeg" style="width:100%;" />
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-gray-900 mb-2">م. محمد صلاح</h3>
+                        <div class="bg-black text-white rounded-full px-4 py-1 mb-4 inline-block font-bold">رحلة حياة أوقفها العدوان</div>
+                        <p class="text-gray-700 mb-2 font-semibold">منسق في وحدة التطوير التقني - حاضنة يوكاس التكنولوجية</p>
+                        <div class="bg-gray-100 rounded-xl p-4 my-4 shadow text-right">
+                            <p class="text-gray-800 text-md mb-2">حصل على شهادتي البكالوريوس والماجستير في الهندسة الكهربائية من الجامعة الإسلامية بغزة، فلسطين، عامي ٢٠٠٥ و٢٠١٠ على التوالي.</p>
+                            <p class="text-gray-800 text-md mb-2">بحث الماجستير: تطبيق تحديد معاملات محرك تيار مستمر ذي مغناطيس دائم.</p>
+                            <p class="text-gray-800 text-md mb-2">لديه العديد من المشاريع في مجال الإلكترونيات وأنظمة الأتمتة.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                            <div class="bg-gradient-to-br from-cyber-purple to-blue-500 rounded-xl shadow-lg p-6 border-0 text-white flex flex-col items-start">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-graduation-cap text-3xl ml-3"></i>
+                                    <span class="font-bold text-xl">المؤهلات الأكاديمية</span>
+                                </div>
+                                <ul class="text-md space-y-3 text-right w-full">
+                                    <li class="flex items-center"><i class="fas fa-school text-white ml-2"></i> شهادة الثانوية العامة - علمي (1999 – 2000)</li>
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> بكالوريوس الهندسة الكهربائية - الجامعة الإسلامية (2005)</li>
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> ماجستير الهندسة الكهربائية - الجامعة الإسلامية (2010)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gradient-to-br from-orange-500 to-pink-500 rounded-xl shadow-lg p-6 border-0 text-white flex flex-col items-start">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-briefcase text-3xl ml-3"></i>
+                                    <span class="font-bold text-xl">المسيرة المهنية</span>
+                                </div>
+                                <ul class="text-md space-y-3 text-right w-full">
+                                    <li class="flex items-center"><i class="fas fa-tasks text-white ml-2"></i> منسق وحدة التطوير التقني - حاضنة يوكاس التكنولوجية (2016 - 2021)</li>
+                                    <li class="flex items-center"><i class="fas fa-chalkboard-teacher text-white ml-2"></i> محاضر في الكلية الجامعية للعلوم التطبيقية بغزة (2006 - 2025)</li>
+                                    <li class="flex items-center"><i class="fas fa-cogs text-white ml-2"></i> إدارة مشاريع إلكترونيات وأتمتة في غزة</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-gray-700 text-md">
+                            <span class="font-bold text-red-700">قتلتها آلة الحرب الإجرامية</span><br>
+                            <span>رحل تاركاً إرثاً علمياً وإنسانياً كبيراً في قلوب طلبته وزملائه.</span>
+                        </div>
+                    </div>
+                `;
+            }  else if (martyrId === 'martyr_abuneama') {
+                html = `
+                    <div class="relative text-center py-6 px-2">
+                        <div class='absolute top-0 left-0 w-full h-12 bg-black rounded-t-3xl flex items-center justify-center text-white font-bold text-lg tracking-wide'>شهيد القسم</div>
+                        <div class="mb-6 mt-10 flex justify-center">
+                            <div class="w-32 h-32 overflow-hidden rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center mx-auto border-4 border-black shadow-lg">
+                                <img src="imgs/j-neama.jpeg" style="width:100%;" />
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-gray-900 mb-2">م. جهاد أبو نعمة</h3>
+                        <div class="bg-black text-white rounded-full px-4 py-1 mb-4 inline-block font-bold">رحلة حياة أوقفها العدوان</div>
+                        <p class="text-gray-700 mb-2 font-semibold">محاضر في الكلية الجامعية للعلوم التطبيقية - قسم الهندسة</p>
+                        <div class="bg-gray-100 rounded-xl p-4 my-4 shadow text-right">
+                            <p class="text-gray-800 text-md mb-2">محاضر في الكلية الجامعية للعلوم التطبيقية بغزة (2018 - 2023)</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                            <div class="bg-gradient-to-br from-cyber-purple to-blue-500 rounded-xl shadow-lg p-6 border-0 text-white flex flex-col items-start">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-graduation-cap text-3xl ml-3"></i>
+                                    <span class="font-bold text-xl">المؤهلات الأكاديمية</span>
+                                </div>
+                                <ul class="text-md space-y-3 text-right w-full">
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> ماجستير في هندسة الحاسوب - الجامعة الإسلامية</li>
+                                    <li class="flex items-center"><i class="fas fa-university text-white ml-2"></i> بكالوريوس في هندسة الحاسوب - الجامعة الإسلامية</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gradient-to-br from-orange-500 to-pink-500 rounded-xl shadow-lg p-6 border-0 text-white flex flex-col items-start">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-briefcase text-3xl ml-3"></i>
+                                    <span class="font-bold text-xl">المسيرة المهنية</span>
+                                </div>
+                                <ul class="text-md space-y-3 text-right w-full">
+                                    <li class="flex items-center"><i class="fas fa-chalkboard-teacher text-white ml-2"></i> محاضر في الكلية الجامعية للعلوم التطبيقية - قسم الهندسة (2018 – 2023)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-gray-700 text-md">
+                            <span class="font-bold text-red-700">قتلتها آلة الحرب الإجرامية</span><br>
+                            <span>رحل تاركاً إرثاً علمياً وإنسانياً كبيراً في قلوب طلبته وزملائه.</span>
+                        </div>
+                    </div>
+                `;
+            }
+            content.innerHTML = html;
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeMartyrModal() {
+            const modal = document.getElementById('martyrModal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
     </script>
 
 </body>
