@@ -649,7 +649,7 @@ function showFacultyDetails(facultyId) {
                 ${imageHTML}
             </div>
             <h2 class="text-2xl font-bold text-gray-800 mb-2">${faculty.name || 'غير محدد'}</h2>
-            <p class="text-lg text-blue-600 font-medium mb-2">${faculty.position || 'غير محدد'}</p>
+            <p class="text-lg text-blue-600 font-medium mb-2">${faculty.position?faculty.position:''}</p>
             ${faculty.qualification ? `
                 <div class="inline-flex items-center bg-gradient-to-r ${faculty.gradient || 'from-blue-500 to-blue-700'} text-white px-4 py-1 rounded-full text-sm">
                     <i class="fas fa-graduation-cap ml-2"></i>
